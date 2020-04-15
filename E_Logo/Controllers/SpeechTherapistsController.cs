@@ -22,14 +22,16 @@ namespace E_Logo.Controller
 
         // GET: api/SpeechTherapists
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<SpeechTherapist>>> GetSpeechTherapists()
+        public async Task<ActionResult<IEnumerable<SpeechTherapistDTO>>> GetSpeechTherapists()
         {
-            return await _context.SpeechTherapists.ToListAsync();
+            //return await _context.SpeechTherapists.ToListAsync();
+            return (await _context.SpeechTherapists.ToListAsync()).ToDTO();
+
         }
 
         // GET: api/SpeechTherapists/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<SpeechTherapist>> GetSpeechTherapist(int id)
+        public async Task<ActionResult<SpeechTherapistDTO>> GetSpeechTherapist(int id)
         {
             var speechTherapist = await _context.SpeechTherapists.FindAsync(id);
 
@@ -38,38 +40,33 @@ namespace E_Logo.Controller
                 return NotFound();
             }
 
-            return speechTherapist;
+            return speechTherapist.ToDTO();
         }
 
         // PUT: api/SpeechTherapists/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutSpeechTherapist(int id, SpeechTherapist speechTherapist)
+        public async Task<IActionResult> PutSpeechTherapist(int id, SpeechTherapistDTO speechTherapistDTO)
         {
-            if (id != speechTherapist.Id)
+            if (id != speechTherapistDTO.Id)
             {
                 return BadRequest();
             }
+            var st = await _context.SpeechTherapists.Where(s => s.Id == id).SingleOrDefaultAsync();
+            if (st == null)
+                return NotFound();
+            st.Username = speechTherapistDTO.Username;
+            st.Firstname = speechTherapistDTO.Firstname;
+            st.Lastname = speechTherapistDTO.Lastname;
 
-            _context.Entry(speechTherapist).State = EntityState.Modified;
-
-            try
+            if (speechTherapistDTO.Password != null)
             {
-                await _context.SaveChangesAsync();
+                st.Password = speechTherapistDTO.Password;
             }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!SpeechTherapistExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
+            // var res = await _context.SaveChangesAsyncWithValidation();
+            // if (!res.IsEmpty)
+            //     return BadRequest(res);
             return NoContent();
         }
 
@@ -77,13 +74,27 @@ namespace E_Logo.Controller
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
-        public async Task<ActionResult<SpeechTherapist>> PostSpeechTherapist(SpeechTherapist speechTherapist)
+        public async Task<ActionResult<SpeechTherapistDTO>> PostSpeechTherapist(SpeechTherapistDTO speechTherapistDTO)
         {
-            _context.SpeechTherapists.Add(speechTherapist);
+            var st = await _context.SpeechTherapists.FindAsync(speechTherapistDTO.Id);
+            if (st != null)
+            {
+                //var err = new ValidationErrors().Add("Pseudo already in use", nameof(member.Pseudo));
+                return BadRequest();
+            }
+            var newST = new SpeechTherapist()
+            {
+                Username = speechTherapistDTO.Username,
+                Lastname = speechTherapistDTO.Lastname,
+                Firstname = speechTherapistDTO.Lastname,
+            };
+            _context.SpeechTherapists.Add(newST);
             await _context.SaveChangesAsync();
-
+            // var res = await _context.SaveChangesAsync();
+            // if(!res.IsEmpty)
+            // return BadRequest();
             //  return CreatedAtAction("GetSpeechTherapist", new { id = speechTherapist.Id }, speechTherapist);
-            return CreatedAtAction(nameof(GetSpeechTherapist), new { id = speechTherapist.Id }, speechTherapist);
+            return CreatedAtAction(nameof(GetSpeechTherapist), new { id = newST.Id }, newST.ToDTO());
         }
 
         // DELETE: api/SpeechTherapists/5

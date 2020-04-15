@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "G89tAUX+siRBXMRq7EaRwhB535peogO5P6UtYJ3Kp7XZcL113GhvMXCeTlV/TzGAVnlyvdhrqDROXyRgP3Adzw==",
+  "dgSpecHash": "aLcCehQ3Bbpqo+v0e4qeWQ7/y06GPUGTzMMEJ7SBS6NpIfRdHhvZCV36JR9SN8xVMHpNU/TtNH04dH1gi5BrVQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Matilde\\Documents\\EPFC\\ING3A\\TFE\\Projects\\E_Logo\\E_Logo.csproj",
+  "projectFilePath": "C:\\Users\\Matilde\\Documents\\EPFC\\ING3A\\TFE\\Projects\\e_logo\\E_Logo\\E_Logo.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Matilde\\.nuget\\packages\\microsoft.aspnetcore.html.abstractions\\2.2.0\\microsoft.aspnetcore.html.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\Matilde\\.nuget\\packages\\microsoft.aspnetcore.razor\\2.2.0\\microsoft.aspnetcore.razor.2.2.0.nupkg.sha512",

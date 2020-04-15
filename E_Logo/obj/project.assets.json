@@ -8147,11 +8147,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Matilde\\Documents\\EPFC\\ING3A\\TFE\\Projects\\E_Logo\\E_Logo.csproj",
+      "projectUniqueName": "c:\\Users\\Matilde\\Documents\\EPFC\\ING3A\\TFE\\Projects\\e_logo\\E_Logo\\E_Logo.csproj",
       "projectName": "E_Logo",
-      "projectPath": "C:\\Users\\Matilde\\Documents\\EPFC\\ING3A\\TFE\\Projects\\E_Logo\\E_Logo.csproj",
+      "projectPath": "c:\\Users\\Matilde\\Documents\\EPFC\\ING3A\\TFE\\Projects\\e_logo\\E_Logo\\E_Logo.csproj",
       "packagesPath": "C:\\Users\\Matilde\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Matilde\\Documents\\EPFC\\ING3A\\TFE\\Projects\\E_Logo\\obj\\",
+      "outputPath": "c:\\Users\\Matilde\\Documents\\EPFC\\ING3A\\TFE\\Projects\\e_logo\\E_Logo\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
