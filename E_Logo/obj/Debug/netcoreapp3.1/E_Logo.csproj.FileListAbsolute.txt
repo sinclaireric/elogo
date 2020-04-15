@@ -250,3 +250,6 @@ C:\Users\Matilde\Documents\EPFC\ING3A\TFE\Projects\e_logo\E_Logo\obj\Debug\netco
 C:\Users\Matilde\Documents\EPFC\ING3A\TFE\Projects\e_logo\E_Logo\obj\Debug\netcoreapp3.1\E_Logo.dll
 C:\Users\Matilde\Documents\EPFC\ING3A\TFE\Projects\e_logo\E_Logo\obj\Debug\netcoreapp3.1\E_Logo.pdb
 C:\Users\Matilde\Documents\EPFC\ING3A\TFE\Projects\e_logo\E_Logo\obj\Debug\netcoreapp3.1\E_Logo.genruntimeconfig.cache
+C:\Users\Matilde\Documents\EPFC\ING3A\TFE\Projects\e_logo\E_Logo\bin\Debug\netcoreapp3.1\MySqlConnector.dll
+C:\Users\Matilde\Documents\EPFC\ING3A\TFE\Projects\e_logo\E_Logo\bin\Debug\netcoreapp3.1\Pomelo.EntityFrameworkCore.MySql.dll
+C:\Users\Matilde\Documents\EPFC\ING3A\TFE\Projects\e_logo\E_Logo\bin\Debug\netcoreapp3.1\Pomelo.JsonObject.dll

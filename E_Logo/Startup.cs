@@ -27,7 +27,8 @@ namespace E_Logo
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<E_LogoContext>(opt => opt.UseInMemoryDatabase("TodoList"));
+            //services.AddDbContext<E_LogoContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("ELOGODB-mssql")));
+            services.AddDbContext<E_LogoContext>(opt => opt.UseMySql(Configuration.GetConnectionString("ELOGODB-mysql")));
             services.AddControllers();
         }
 
