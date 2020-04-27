@@ -5,19 +5,39 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using E_Logo.Models;
+using E_LOGO.Models;
+using Microsoft.AspNetCore.Authorization;
+using System.Text;
+using System.Security.Claims;
+using E_LOGO.Helpers;
+using Microsoft.Extensions.Options;
+using System.IdentityModel.Tokens.Jwt;
+using Microsoft.IdentityModel.Tokens;
 
-namespace E_Logo.Controller
+namespace E_LOGO.Controller
 {
     [Route("api/[controller]")]
     [ApiController]
     public class SpeechTherapistsController : ControllerBase
     {
-        private readonly E_LogoContext _context;
+        private readonly E_LOGOContext _context;
 
-        public SpeechTherapistsController(E_LogoContext context)
+        public SpeechTherapistsController(E_LOGOContext context,IOptions<AppSettings> appSettings)
         {
             _context = context;
+            _appSettings = appSettings.Value;
+        }
+
+        [AllowAnonymous]
+        [HttpPost("authenticate")]
+        public async Task<ActionResult<SpeechTherapist>> Authenticate(SpeechTherapistDTO data)
+        {
+            var st = await Authenticate(data.Username, data.Password);
+            if (st == null)
+                return BadRequest(new { message = "Username is incorrect" });
+            if (st.Token == null)
+                return BadRequest(new { message = "Password is incorrect" });
+            return Ok(st.AuthenticateDTO());
         }
 
         // GET: api/SpeechTherapists
@@ -117,5 +137,36 @@ namespace E_Logo.Controller
         {
             return _context.SpeechTherapists.Any(e => e.Id == id);
         }
+
+
+
+        //JWT AUTHENTICATE
+        private readonly AppSettings _appSettings;
+        public async Task<SpeechTherapist> Authenticate(string username, string password)
+        {
+            var st = await _context.SpeechTherapists.SingleOrDefaultAsync(x => x.Username == username && x.Password == password);
+
+            // return null if user not found
+            if (st == null)
+                return null;
+
+            // authentication successful so generate jwt token
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var key = Encoding.ASCII.GetBytes("my-super-secret-key");
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity(new Claim[]
+                {
+                    new Claim(ClaimTypes.Name, st.Id.ToString())
+                }),
+                Expires = DateTime.UtcNow.AddDays(7),
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+            };
+            var token = tokenHandler.CreateToken(tokenDescriptor);
+            st.Token = tokenHandler.WriteToken(token);
+
+            return st.WithoutPassword();
+        }
+
     }
 }

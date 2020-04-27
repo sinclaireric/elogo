@@ -1,10 +1,10 @@
 using Microsoft.EntityFrameworkCore;
 
-namespace E_Logo.Models
+namespace E_LOGO.Models
 {
-    public class E_LogoContext : DbContext
+    public class E_LOGOContext : DbContext
     {
-        public E_LogoContext(DbContextOptions<E_LogoContext> options)
+        public E_LOGOContext(DbContextOptions<E_LOGOContext> options)
             : base(options)
         {
         }

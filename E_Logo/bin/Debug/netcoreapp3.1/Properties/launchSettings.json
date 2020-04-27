@@ -17,7 +17,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "E_Logo": {
+    "E_LOGO": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "weatherforecast",

@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace E_Logo.Models
+namespace E_LOGO.Models
 {
     public class SpeechTherapistDTO
     {

@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace E_Logo.Migrations
+namespace E_LOGO.Migrations
 {
     public partial class DatabaseV1 : Migration
     {

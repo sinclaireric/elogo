@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using E_Logo.Models;
+using E_LOGO.Models;
 
-namespace E_Logo.Models
+namespace E_LOGO.Models
 {
 
     public static class DTOMappers
@@ -15,21 +15,17 @@ namespace E_Logo.Models
         //                                                                                                          //
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        // public static AuthenticateUserDTO AuthenticateDTO(this User user)
-        // {
-        //     return new AuthenticateUserDTO
-        //     {
-        //         Id = user.Id,
-        //         Pseudo = user.Pseudo,
-        //         Email = user.Email,
-        //         LastName = user.LastName,
-        //         FirstName = user.FirstName,
-        //         BirthDate = user.BirthDate,
-        //         Reputation = user.Reputation,
-        //         Role = user.Role,
-        //         Token = user.Token
-        //     };
-        // }
+        public static AuthenticateSpeechTherapistDTO AuthenticateDTO(this SpeechTherapist st)
+        {
+            return new AuthenticateSpeechTherapistDTO
+            {
+                Id = st.Id,
+                Username = st.Username,
+                FirstName = st.Firstname,
+                LastName = st.Lastname,
+                Token = st.Token
+            };
+        }
 
 
 

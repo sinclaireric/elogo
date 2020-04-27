@@ -1,6 +1,7 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
-namespace E_Logo.Models
+namespace E_LOGO.Models
 {
     public class SpeechTherapist
     {
@@ -18,6 +19,7 @@ namespace E_Logo.Models
         public string Password { get; set; }
         public string Firstname { get; set; }
         public string Lastname { get; set; }
-
+        [NotMapped]
+        public string Token { get; set; }
     }
 }

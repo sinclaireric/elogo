@@ -1,6 +1,6 @@
 using System;
 
-namespace E_Logo
+namespace E_LOGO
 {
     public class WeatherForecast
     {
