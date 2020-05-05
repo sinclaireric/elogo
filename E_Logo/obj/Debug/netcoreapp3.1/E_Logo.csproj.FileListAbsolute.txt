@@ -263,3 +263,6 @@ C:\Users\Matilde\Documents\EPFC\ING3A\TFE\Projects\e_logo\E_Logo\bin\Debug\netco
 C:\Users\Matilde\Documents\EPFC\ING3A\TFE\Projects\e_logo\E_Logo\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 C:\Users\Matilde\Documents\EPFC\ING3A\TFE\Projects\e_logo\E_Logo\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Tokens.dll
 C:\Users\Matilde\Documents\EPFC\ING3A\TFE\Projects\e_logo\E_Logo\bin\Debug\netcoreapp3.1\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\Matilde\Documents\EPFC\ING3A\TFE\Projects\e_logo\E_Logo\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\Matilde\Documents\EPFC\ING3A\TFE\Projects\e_logo\E_Logo\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+C:\Users\Matilde\Documents\EPFC\ING3A\TFE\Projects\e_logo\E_Logo\bin\Debug\netcoreapp3.1\Newtonsoft.Json.Bson.dll

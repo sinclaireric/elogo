@@ -20,7 +20,7 @@ namespace E_LOGO.Models
             return new AuthenticateSpeechTherapistDTO
             {
                 Id = st.Id,
-                Username = st.Username,
+                Email = st.Email,
                 FirstName = st.Firstname,
                 LastName = st.Lastname,
                 Token = st.Token
@@ -43,10 +43,11 @@ namespace E_LOGO.Models
             {
 
                 Id = st.Id,
-                Username = st.Username,
+                Email = st.Email,
                 //we don't put the password in the DTO for security reasons.
                 Firstname = st.Firstname,
-                Lastname = st.Lastname
+                Lastname = st.Lastname,
+                Patients = st.Patients.ToDTO()
             };
 
         }
@@ -59,5 +60,36 @@ namespace E_LOGO.Models
         }
 
 
+
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //                                                                                                          //
+        //                                    DTOMapper Patients                                                    //
+        //                                                                                                          //
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        //convertisseur d'un Patient vers un PatientDTO
+        public static PatientDTO ToDTO(this Patient p)
+        {
+
+            return new PatientDTO
+            {
+
+                Id = p.Id,
+                Fullname = p.Fullname,
+                Results = p.Results,
+                Diagnostique = p.Diagnostique,
+                LastTaskDone = p.LastTaskDone,
+                SpeechTherapistID = p.SpeechTherapistID,
+               // SpeechTherapistDTO = p.SpeechTherapist.ToDTO(),
+            };
+
+        }
+
+        //Convertisseur d'une list de Patients vers PatientDTO
+
+        public static List<PatientDTO> ToDTO(this IEnumerable<Patient> p)
+        {
+            return p.Select(s => s.ToDTO()).ToList();
+        }
     }
 }

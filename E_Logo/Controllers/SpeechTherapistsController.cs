@@ -32,9 +32,9 @@ namespace E_LOGO.Controller
         [HttpPost("authenticate")]
         public async Task<ActionResult<SpeechTherapist>> Authenticate(SpeechTherapistDTO data)
         {
-            var st = await Authenticate(data.Username, data.Password);
+            var st = await Authenticate(data.Email, data.Password);
             if (st == null)
-                return BadRequest(new { message = "Username is incorrect" });
+                return BadRequest(new { message = "Email is incorrect" });
             if (st.Token == null)
                 return BadRequest(new { message = "Password is incorrect" });
             return Ok(st.AuthenticateDTO());
@@ -76,7 +76,7 @@ namespace E_LOGO.Controller
             var st = await _context.SpeechTherapists.Where(s => s.Id == id).SingleOrDefaultAsync();
             if (st == null)
                 return NotFound();
-            st.Username = speechTherapistDTO.Username;
+            st.Email = speechTherapistDTO.Email;
             st.Firstname = speechTherapistDTO.Firstname;
             st.Lastname = speechTherapistDTO.Lastname;
 
@@ -104,7 +104,7 @@ namespace E_LOGO.Controller
             }
             var newST = new SpeechTherapist()
             {
-                Username = speechTherapistDTO.Username,
+                Email = speechTherapistDTO.Email,
                 Lastname = speechTherapistDTO.Lastname,
                 Firstname = speechTherapistDTO.Lastname,
             };
@@ -142,9 +142,9 @@ namespace E_LOGO.Controller
 
         //JWT AUTHENTICATE
         private readonly AppSettings _appSettings;
-        public async Task<SpeechTherapist> Authenticate(string username, string password)
+        public async Task<SpeechTherapist> Authenticate(string Email, string password)
         {
-            var st = await _context.SpeechTherapists.SingleOrDefaultAsync(x => x.Username == username && x.Password == password);
+            var st = await _context.SpeechTherapists.SingleOrDefaultAsync(x => x.Email == Email && x.Password == password);
 
             // return null if user not found
             if (st == null)

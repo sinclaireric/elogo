@@ -2,14 +2,16 @@
 using E_LOGO.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace E_LOGO.Migrations
 {
     [DbContext(typeof(E_LOGOContext))]
-    partial class E_LOGOContextModelSnapshot : ModelSnapshot
+    [Migration("20200429095754_Patients")]
+    partial class Patients
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
