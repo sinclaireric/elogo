@@ -32,6 +32,19 @@ namespace E_LOGO
                 //opt.UseLazyLoadingProxies();
                 opt.UseMySql(Configuration.GetConnectionString("ELOGODB-mysql"));
             });
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAll",
+                    builder =>
+                    {
+                        builder
+                        .AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader();
+                    });
+            });
+
             services.AddControllers();
             services.AddMvc()
             .AddNewtonsoftJson(options =>
@@ -97,7 +110,7 @@ namespace E_LOGO
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            app.UseCors("AllowAll");
             app.UseHttpsRedirection();
 
             app.UseRouting();
