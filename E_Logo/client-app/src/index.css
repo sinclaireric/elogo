@@ -1,10 +1,11 @@
 @import url('https://fonts.googleapis.com/css?family=Fira+Sans:400,500,600,700,800');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 
 * {
   box-sizing: border-box;
 }
 body {
-  background: #1C8EF9 !important;
+  background: rgb(240, 91, 86) !important;
   min-height: 100vh;
   display: flex;
   font-weight: 400;
@@ -32,9 +33,8 @@ body, html, .App, #root, .auth-wrapper {
   flex-direction: column;
   text-align: left;
 }
-
 .auth-inner {
-  width: 450px;
+  width: auto;
   margin: auto;
   background: #ffffff;
   box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
@@ -44,7 +44,7 @@ body, html, .App, #root, .auth-wrapper {
 }
 
 .auth-wrapper .form-control:focus {
-  border-color: #167bff;
+  border-color: black;
   box-shadow: none;
 }
 
@@ -68,6 +68,3 @@ body, html, .App, #root, .auth-wrapper {
   margin: 0;
 }
 
-.forgot-password a {
-  color: #167bff;
-}

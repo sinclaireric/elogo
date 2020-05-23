@@ -29,22 +29,6 @@ export default class AuthService{
          }
          else 
              return null;
-        
-        //console.log(data);
-
-        // const promise = await fetch(this.domain, postObject);
-        // if(this.checkResponseStatus(promise)){
-        //     return promise.json();
-        // }
-        
-        // return fetch(this.domain, postObject)
-        // .then()
-        // .then(this.checkResponseStatus)
-        // .then(response => response.json())
-        // .then(jsondata => {
-        //     this.setToken(jsondata.token)
-
-        // });
     }
     setToken(token)
     {

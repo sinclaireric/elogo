@@ -2,9 +2,8 @@ import React from 'react';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-
 import Login from "./components/login.component";
-import SignUp from "./components/signup.component";
+import PatientsList from './components/patientslist.component';
 
 function App() {
   return (<Router>
@@ -16,9 +15,6 @@ function App() {
               <li className="nav-item">
                 <Link className="nav-link" to={"/"}>Login</Link>
               </li>
-              <li className="nav-item">
-                <Link className="nav-link" to={"/sign-up"}>Sign up</Link>
-              </li>
             </ul>
           </div>
         </div>
@@ -29,7 +25,7 @@ function App() {
           <Switch>
             <Route exact path='/' component={Login} />
             <Route path="/sign-in" component={Login} />
-            <Route path="/sign-up" component={SignUp} />
+            <Route path="/home" component={PatientsList}/>
           </Switch>
         </div>
       </div>

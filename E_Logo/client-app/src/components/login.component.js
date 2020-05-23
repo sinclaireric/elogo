@@ -34,7 +34,7 @@ export default class Login extends Component {
         event.preventDefault();
         const api_call =  Auth.login(this.state.email, this.state.password);
         if(api_call){
-            //this.props.history.replace('/home');
+            this.props.history.replace('/home');
             console.log(this.state);
             this.setState({
                 invalidLogin: false
@@ -65,7 +65,7 @@ export default class Login extends Component {
                     <input type="password"  value={this.state.password} id="password" onChange={this.handleChange} className="form-control" placeholder="Enter password" />
                 </div>
 
-                <button type="submit" onClick={this.handleSubmit} className="btn btn-primary btn-block">Submit</button>
+                <button type="submit" background-colod="rgb(247, 79, 101)" disabled={!this.validateForm()}onClick={this.handleSubmit} className="btn btn-danger btn-primary btn-block">Submit</button>
 
             </form>
         );
