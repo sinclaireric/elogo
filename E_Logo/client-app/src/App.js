@@ -4,6 +4,8 @@ import './App.css';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Login from "./components/login.component";
 import PatientsList from './components/patientslist.component';
+import AuthService from "./components/services/AuthService";
+const Auth = new AuthService();
 
 function App() {
   return (<Router>
@@ -14,6 +16,10 @@ function App() {
             <ul className="navbar-nav ml-auto">
               <li className="nav-item">
                 <Link className="nav-link" to={"/"}>Login</Link>
+
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" onClick={Auth.logout()} to={"/"}>Logout</Link>
               </li>
             </ul>
           </div>
@@ -25,7 +31,8 @@ function App() {
           <Switch>
             <Route exact path='/' component={Login} />
             <Route path="/sign-in" component={Login} />
-            <Route path="/home" component={PatientsList}/>
+            <Route path="/home" component={PatientsList} />
+            <Route path="/" component={Login} />
           </Switch>
         </div>
       </div>
@@ -34,3 +41,8 @@ function App() {
 }
 
 export default App;
+
+
+
+
+

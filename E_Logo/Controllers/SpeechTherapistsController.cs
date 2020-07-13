@@ -34,9 +34,7 @@ namespace E_LOGO.Controller
         {
             var st = await Authenticate(data.Email, data.Password);
             if (st == null)
-                return BadRequest(new { message = "Email is incorrect" });
-            if (st.Token == null)
-                return BadRequest(new { message = "Password is incorrect" });
+                return BadRequest(new { message = "Email or password is incorrect" });
             return Ok(st.AuthenticateDTO());
         }
 
