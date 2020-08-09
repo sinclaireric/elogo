@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-import AuthService from "./services/AuthService";
+import { bindActionCreators } from "redux";
+import * as STActions from "../redux/STActionCreator";
+import { connect } from "react-redux";
 
 
-const Auth = new AuthService();
-export default class Login extends Component {
+class Login extends Component {
     constructor(props) {
 
 
@@ -34,21 +35,24 @@ export default class Login extends Component {
 
     handleSubmit = async event => {
         event.preventDefault();
-        const api_call = await Auth.login(this.state.email, this.state.password);
-        if (api_call) {
-            if (api_call.data) {
-                this.props.history.replace('/home');
-                //console.log(this.state);
-                this.setState({
-                    invalidLogin: false
-                });
-            } else {
-                this.setState({
-                    error: api_call.error,
-                    invalidLogin: true
-                });
-            }
-        }
+        //const api_call = await Auth.login(this.state.email, this.state.password);
+        this.props.getUserConnected(this.state.email, this.state.password);
+        setTimeout(() => { this.props.history.replace('/home') }, 2000);
+
+        // if (api_call) {
+        //     if (api_call.data) {
+        //         this.props.history.replace('/home');
+        //         //console.log(this.state);
+        //         this.setState({
+        //             invalidLogin: false
+        //         });
+        //     } else {
+        //         this.setState({
+        //             error: api_call.error,
+        //             invalidLogin: true
+        //         });
+        //     }
+        // }
     }
 
     validateForm() {
@@ -76,3 +80,14 @@ export default class Login extends Component {
         );
     }
 }
+
+const mapDispatchToProps = (dispatch) => ({
+    getUserConnected: bindActionCreators(STActions.getUserConnected, dispatch),
+});
+
+const LoginContainer = connect(
+    null,
+    mapDispatchToProps
+)(Login)
+
+export default LoginContainer;

@@ -4,8 +4,8 @@ import './App.css';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Login from "./components/login.component";
 import PatientsList from './components/patientslist.component';
-import AuthService from "./components/services/AuthService";
-const Auth = new AuthService();
+
+
 
 function App() {
   return (<Router>
@@ -19,7 +19,7 @@ function App() {
 
               </li>
               <li className="nav-item">
-                <Link className="nav-link" onClick={Auth.logout()} to={"/"}>Logout</Link>
+                <Link className="nav-link"  to={"/"}>Logout</Link>
               </li>
             </ul>
           </div>

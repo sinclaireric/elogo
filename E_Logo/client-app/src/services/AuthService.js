@@ -1,9 +1,8 @@
 import decode from 'jwt-decode'
+const domain = 'http://localhost:5000/api/SpeechTherapists/authenticate';
 
-export default class AuthService {
-    constructor() {
-        this.domain = 'http://localhost:5000/api/SpeechTherapists/authenticate'
-    }
+
+export default {
 
 
     async login(email, password) {
@@ -19,7 +18,7 @@ export default class AuthService {
         }
 
         try {
-            const api_call = await fetch(this.domain, postObject);
+            const api_call = await fetch(domain, postObject);
             //console.log(api_call);
             const data = await api_call.json();
             //console.log(data);
@@ -34,25 +33,26 @@ export default class AuthService {
 
         }
 
+    },
 
-    }
+
     setToken(token) {
         sessionStorage.setItem('token', token);
-    }
+    },
 
     getToken() {
         return sessionStorage.getItem('token');
-    }
-    
+    },
+
     logout() {
         console.log("logount confirm");
         sessionStorage.clear();
         sessionStorage.removeItem('token');
-    }
+    },
     loggedIn() {
         const token = this.getToken();
         return !!token && !this.isTokenExpired(token);
-    }
+    },
     checkResponseStatus(response) {
 
         // raises an error in case response status is not a success
@@ -64,7 +64,7 @@ export default class AuthService {
             console.log(response);
             return false;
         }
-    }
+    },
     isTokenExpired(token) {
         try {
             const decoded = decode(token);
@@ -78,10 +78,10 @@ export default class AuthService {
         catch (error) {
             return false;
         }
-    }
+    },
     getProfile() {
         return decode(this.getToken());
-    }
+    },
 
 
 

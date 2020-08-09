@@ -2,9 +2,12 @@ import React, { useEffect } from 'react';
 import MaterialTable from 'material-table';
 import API from '../api';
 import Alert from '@material-ui/lab/Alert';
+import {useSelector} from "react-redux";
 
+  
 export default function PatientsList() {
 
+const userConnected = useSelector(state => state.userConnected);
 
   var columns = [
     { title: 'Fullname', field: 'fullname' },
@@ -18,7 +21,7 @@ export default function PatientsList() {
   const [errorMessages, setErrorMessages] = React.useState([])
 
   useEffect(() => {
-    API.get('/Patients/getallpatients/1')
+    API.get(`/Patients/getallpatients/${userConnected.id}`)
       .then(res => {
         setData(res.data)
       }).catch(error => {
@@ -29,7 +32,7 @@ export default function PatientsList() {
   const handleRowAdd = (newData, resolve) => {
     //validation
     let errorList = []
-    newData.speechTherapistID = 1;
+    newData.speechTherapistID = userConnected.id;
     if (newData.fullname === undefined) {
       errorList.push("Please enter fullname")
     }
@@ -112,6 +115,9 @@ export default function PatientsList() {
 
   return (
     <div className="App">
+      <div>
+        id : {userConnected.id}
+      </div>
           <div>
             {iserror &&
               <Alert severity="error">
