@@ -20,18 +20,17 @@ export default class AuthService {
 
         try {
             const api_call = await fetch(this.domain, postObject);
-            console.log(api_call);
+            //console.log(api_call);
             const data = await api_call.json();
-            console.log(data);
+            //console.log(data);
             if (data.token != null) {
-                console.log("token is seet");
                 this.setToken(data.token);
                 return { data: data, error: null };
             }
             else
                 return { data: null, error: data.message };
         } catch (err) {
-            console.log(err.message)
+            //console.log(err.message)
 
         }
 

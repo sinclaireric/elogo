@@ -1,77 +1,152 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import MaterialTable from 'material-table';
+import API from '../api';
+import Alert from '@material-ui/lab/Alert';
 
 export default function PatientsList() {
-  const [state, setState] = React.useState({
-    columns: [
-      { title: 'Name', field: 'name' },
-      { title: 'Surname', field: 'surname' },
-      { title: 'Birth Year', field: 'birthYear', type: 'numeric' },
-      {
-        title: 'Birth Place',
-        field: 'birthCity',
-        lookup: { 34: 'İstanbul', 63: 'Şanlıurfa' },
-      },
-    ],
-    data: [
-      { name: 'Mehmet', surname: 'Baran', birthYear: 1987, birthCity: 63 },
-      {
-        name: 'Zerya Betül',
-        surname: 'Baran',
-        birthYear: 2017,
-        birthCity: 34,
-      },
-    ],
-  });
+
+
+  var columns = [
+    { title: 'Fullname', field: 'fullname' },
+    { title: 'Results', field: 'results' },
+    { title: 'Diagnostic', field: 'diagnostique' },
+    { title: 'Last Task Done', field: 'lastTaskDone' },
+  ]
+  const [data, setData] = React.useState([]); //table data
+  //for error handling
+  const [iserror, setIserror] = React.useState(false)
+  const [errorMessages, setErrorMessages] = React.useState([])
+
+  useEffect(() => {
+    API.get('/Patients/getallpatients/1')
+      .then(res => {
+        setData(res.data)
+      }).catch(error => {
+        console.log("Error")
+      })
+  }, [])
+
+  const handleRowAdd = (newData, resolve) => {
+    //validation
+    let errorList = []
+    newData.speechTherapistID = 1;
+    if (newData.fullname === undefined) {
+      errorList.push("Please enter fullname")
+    }
+    if (newData.diagnostique === undefined) {
+      errorList.push("Please enter a diagnostic")
+    }
+    if (errorList.length < 1) { //no error
+      API.post("/Patients/", newData)
+        .then(res => {
+          let dataToAdd = [...data];
+          dataToAdd.push(newData);
+          setData(dataToAdd);
+          resolve()
+          setErrorMessages([])
+          setIserror(false)
+        })
+        .catch(error => {
+          setErrorMessages(["Cannot add data. Server error!"])
+          setIserror(true)
+          resolve()
+        })
+    } else {
+      setErrorMessages(errorList)
+      setIserror(true)
+      resolve()
+    }
+  };
+
+  const handleRowUpdate = (newData, oldData, resolve) => {
+    //validation
+    let errorList = []
+     if (newData.fullname === "") {
+      errorList.push("Please enter fullname")
+    }
+    if (newData.diagnostique === "") {
+      errorList.push("Please enter a diagnostic")
+    }
+
+    if(errorList.length < 1){
+      API.put("/patients/"+newData.id, newData)
+      .then(res => {
+        const dataUpdate = [...data];
+        const index = oldData.tableData.id;
+        dataUpdate[index] = newData;
+        setData([...dataUpdate]);
+        resolve()
+        setIserror(false)
+        setErrorMessages([])
+      })
+      .catch(error => {
+        setErrorMessages(["Update failed! Server error"])
+        setIserror(true)
+        resolve()
+        
+      })
+    }else{
+      setErrorMessages(errorList)
+      setIserror(true)
+      resolve()
+
+    }
+    
+  }
+
+  const handleRowDelete = (oldData, resolve) => {
+    API.delete("/patients/"+oldData.id)
+      .then(res => {
+        const dataDelete = [...data];
+        const index = oldData.tableData.id;
+        dataDelete.splice(index, 1);
+        setData([...dataDelete]);
+        resolve()
+      })
+      .catch(error => {
+        setErrorMessages(["Delete failed! Server error"])
+        setIserror(true)
+        resolve()
+      })
+  }
 
   return (
-    <MaterialTable
-    options={{
-        pageSize: 10,
-        pageSizeOptions: [5, 10, 20, 30 ,50, 75, 100 ],
-        toolbar: true,
-        paging: true
-    }}
-      title="Patients List"
-      columns={state.columns}
-      data={state.data}
-      editable={{
-        onRowAdd: (newData) =>
-          new Promise((resolve) => {
-            setTimeout(() => {
-              resolve();
-              setState((prevState) => {
-                const data = [...prevState.data];
-                data.push(newData);
-                return { ...prevState, data };
-              });
-            }, 600);
-          }),
-        onRowUpdate: (newData, oldData) =>
-          new Promise((resolve) => {
-            setTimeout(() => {
-              resolve();
-              if (oldData) {
-                setState((prevState) => {
-                  const data = [...prevState.data];
-                  data[data.indexOf(oldData)] = newData;
-                  return { ...prevState, data };
-                });
-              }
-            }, 600);
-          }),
-        onRowDelete: (oldData) =>
-          new Promise((resolve) => {
-            setTimeout(() => {
-              resolve();
-              setState((prevState) => {
-                const data = [...prevState.data];
-                data.splice(data.indexOf(oldData), 1);
-                return { ...prevState, data };
-              });
-            }, 600);
-          }),
-      }}
-    />
+    <div className="App">
+          <div>
+            {iserror &&
+              <Alert severity="error">
+                {errorMessages.map((msg, i) => {
+                  return <div key={i}>{msg}</div>
+                })}
+              </Alert>
+            }
+          </div>
+          <MaterialTable
+            options={{
+              pageSize: 10,
+              pageSizeOptions: [5, 10, 20, 30, 50, 75, 100],
+              toolbar: true,
+              paging: true
+            }}
+            title="Patients List"
+            columns={columns}
+            data={data}
+            editable={{
+              onRowUpdate: (newData, oldData) =>
+                new Promise((resolve) => {
+                    handleRowUpdate(newData, oldData, resolve);
+                    
+                }),
+              onRowAdd: (newData) =>
+                new Promise((resolve) => {
+                  handleRowAdd(newData, resolve)
+                }),
+              onRowDelete: (oldData) =>
+                new Promise((resolve) => {
+                  handleRowDelete(oldData, resolve)
+                }),
+            }}
+          />
+    </div>
   );
 }

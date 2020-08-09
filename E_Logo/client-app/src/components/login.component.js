@@ -38,7 +38,7 @@ export default class Login extends Component {
         if (api_call) {
             if (api_call.data) {
                 this.props.history.replace('/home');
-                console.log(this.state);
+                //console.log(this.state);
                 this.setState({
                     invalidLogin: false
                 });
