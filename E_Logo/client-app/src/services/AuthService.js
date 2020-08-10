@@ -1,18 +1,11 @@
-import decode from 'jwt-decode'
+import { MTablePagination } from "material-table";
+
 const domain = 'http://localhost:5000/api/SpeechTherapists/authenticate';
-//import API from '../api';
 
 export default {
 
-    // async login (email,password){
-    //     const postBody = { 'email': email, 'password': password };
-    //     API.post('/SpeechTherapists/authenticate', postBody)
-    //     .then(res => {
-    //       })
-    //       .catch(error => {
-    //       })
-    // },
     async login(email, password) {
+        // console.log(sessionStorage);
         const postBody = { 'email': email, 'password': password };
 
         const postObject = {
@@ -23,20 +16,18 @@ export default {
             },
             body: JSON.stringify(postBody)
         }
-
         try {
             const api_call = await fetch(domain, postObject);
-            //console.log(api_call);
             const data = await api_call.json();
-            //console.log(data);
             if (data.token != null) {
+                console.log("data json:",data);
                 this.setToken(data.token);
+                sessionStorage.setItem('currentUserID', JSON.stringify(data.id));
                 return { data: data, error: null };
             }
             else
                 return { data: null, error: data.message };
         } catch (err) {
-            console.log("AuthService", err.message)
 
         }
 
@@ -45,51 +36,49 @@ export default {
 
     setToken(token) {
         sessionStorage.setItem('token', token);
-    },
+     },
 
-    getToken() {
-        return sessionStorage.getItem('token');
-    },
+    // getToken() {
+    //     return sessionStorage.getItem('token');
+    // },
 
-    logout() {
-        console.log("logount confirm");
-        sessionStorage.clear();
-        sessionStorage.removeItem('token');
-    },
-    loggedIn() {
-        const token = this.getToken();
-        return !!token && !this.isTokenExpired(token);
-    },
-    checkResponseStatus(response) {
+    // logout() {
+    //     console.log("logount confirm");
+    //     sessionStorage.clear();
+    //     sessionStorage.removeItem('token');
+    // },
+    // loggedIn() {
+    //     const token = this.getToken();
+    //     return !!token && !this.isTokenExpired(token);
+    // },
+    // checkResponseStatus(response) {
 
-        // raises an error in case response status is not a success
-        if (response.status >= 200 && response.status < 300) { // Success status lies between 200 to 300
-            console.log(response);
-            return true
-        } else {
+    //     // raises an error in case response status is not a success
+    //     if (response.status >= 200 && response.status < 300) { // Success status lies between 200 to 300
+    //         console.log(response);
+    //         return true
+    //     } else {
 
-            console.log(response);
-            return false;
-        }
-    },
-    isTokenExpired(token) {
-        try {
-            const decoded = decode(token);
-            if (decoded.exp < Date.now() / 1000) {
-                return true;
-            }
-            else {
-                return false;
-            }
-        }
-        catch (error) {
-            return false;
-        }
-    },
-    getProfile() {
-        return decode(this.getToken());
-    },
-
-
+    //         console.log(response);
+    //         return false;
+    //     }
+    // },
+    // isTokenExpired(token) {
+    //     try {
+    //         const decoded = decode(token);
+    //         if (decoded.exp < Date.now() / 1000) {
+    //             return true;
+    //         }
+    //         else {
+    //             return false;
+    //         }
+    //     }
+    //     catch (error) {
+    //         return false;
+    //     }
+    // },
+    // getProfile() {
+    //     return decode(this.getToken());
+    // },
 
 }

@@ -1,7 +1,7 @@
 import { GET_USER_CONNECTED, ERROR } from "../redux/STTypes";
 
 const initialState = {
-    id: -1,
+    id: sessionStorage.getItem('currentUserID'),
     password: null,
     email: "",
     lastName: "",

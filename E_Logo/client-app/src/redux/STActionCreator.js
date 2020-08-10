@@ -1,28 +1,28 @@
 import AuthService from "../services/AuthService";
 import * as types from "../redux/STTypes";
 
-export const getUserConnected = (email,password) => async dispatch => {
+export const getUserConnected = (email, password) => async dispatch => {
     let result = null;
-    let error ="";
+    let error = "";
 
-    try{
+    try {
         result = await AuthService.login(email, password);
-    }catch (err) {
-        error = err;
+    } catch (err) {
+        error = err
+        console.log(error);
+    }
+    if (result) {
+        if (result.data !== null) {
+            dispatch({
+                type: types.GET_USER_CONNECTED,
+                payload: result.data
+            })
+        } else {
+            dispatch({
+                type: types.ERROR,
+                payload: result.error
+            })
+        }
     }
 
-    if(result.data !== null){
-        dispatch({
-            type : types.GET_USER_CONNECTED,
-            payload : result.data
-        })
-    }else{
-        dispatch({
-            type : types.ERROR,
-            payload : result.error
-        })
-    }
-
-    
 }
-    
