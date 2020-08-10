@@ -3,7 +3,6 @@ import { bindActionCreators } from "redux";
 import * as STActions from "../redux/STActionCreator";
 import { connect } from "react-redux";
 
-
 class Login extends Component {
     constructor(props) {
 
@@ -17,12 +16,6 @@ class Login extends Component {
         };
     }
 
-    // componentDidUpdate(){
-    //     console.log(this.state);
-    //     if(Auth.loggedIn() === true){
-    //       //  this.props.history.replace('/home');
-    //     }
-    // }
 
     handleChange = event => {
         this.setState({
@@ -35,25 +28,21 @@ class Login extends Component {
 
     handleSubmit = async event => {
         event.preventDefault();
-        //const api_call = await Auth.login(this.state.email, this.state.password);
-        this.props.getUserConnected(this.state.email, this.state.password);
-        setTimeout(() => { this.props.history.replace('/home') }, 2000);
-
-        // if (api_call) {
-        //     if (api_call.data) {
-        //         this.props.history.replace('/home');
-        //         //console.log(this.state);
-        //         this.setState({
-        //             invalidLogin: false
-        //         });
-        //     } else {
-        //         this.setState({
-        //             error: api_call.error,
-        //             invalidLogin: true
-        //         });
-        //     }
-        // }
+        await this.props.getUserConnected(this.state.email, this.state.password);
+        if (this.props.STReducer.error === undefined) {
+            this.setState({
+                invalidLogin: false
+            });
+            setTimeout(() => { this.props.history.replace('/home') }, 1000);
+        } else {
+            this.setState({
+                error: this.props.STReducer.error,
+                invalidLogin: true
+            });
+        }
     }
+
+
 
     validateForm() {
         return this.state.email.length > 0 && this.state.password.length > 0;
@@ -85,8 +74,12 @@ const mapDispatchToProps = (dispatch) => ({
     getUserConnected: bindActionCreators(STActions.getUserConnected, dispatch),
 });
 
+const mapStateToProps = state => ({
+    STReducer: state.userConnected,
+});
+
 const LoginContainer = connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps
 )(Login)
 

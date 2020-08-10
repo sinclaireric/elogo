@@ -7,18 +7,16 @@ const initialState = {
     lastName: "",
     firstName: "",
     token: "",
-    error: "",
+    error: "default",
 }
 
 export default (state = initialState, action) => {
-    console.log(action.payload);
     switch (action.type) {
         case GET_USER_CONNECTED:
-            return action.payload.data;
-
+            return action.payload;
         case ERROR:
             return {
-                ...state, error: action.payload.message
+                ...state, error: action.payload
             };
         default:
             return state;

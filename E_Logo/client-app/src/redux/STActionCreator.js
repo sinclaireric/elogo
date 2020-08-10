@@ -7,20 +7,19 @@ export const getUserConnected = (email,password) => async dispatch => {
 
     try{
         result = await AuthService.login(email, password);
-        console.log(result);
     }catch (err) {
         error = err;
     }
 
-    if(result !== null){
+    if(result.data !== null){
         dispatch({
             type : types.GET_USER_CONNECTED,
-            payload : result
+            payload : result.data
         })
     }else{
         dispatch({
             type : types.ERROR,
-            payload : error
+            payload : result.error
         })
     }
 

@@ -1,10 +1,17 @@
 import decode from 'jwt-decode'
 const domain = 'http://localhost:5000/api/SpeechTherapists/authenticate';
-
+//import API from '../api';
 
 export default {
 
-
+    // async login (email,password){
+    //     const postBody = { 'email': email, 'password': password };
+    //     API.post('/SpeechTherapists/authenticate', postBody)
+    //     .then(res => {
+    //       })
+    //       .catch(error => {
+    //       })
+    // },
     async login(email, password) {
         const postBody = { 'email': email, 'password': password };
 
@@ -29,7 +36,7 @@ export default {
             else
                 return { data: null, error: data.message };
         } catch (err) {
-            //console.log(err.message)
+            console.log("AuthService", err.message)
 
         }
 
