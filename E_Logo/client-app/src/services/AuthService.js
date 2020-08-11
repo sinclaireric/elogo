@@ -1,5 +1,3 @@
-import { MTablePagination } from "material-table";
-
 const domain = 'http://localhost:5000/api/SpeechTherapists/authenticate';
 
 export default {
@@ -20,7 +18,7 @@ export default {
             const api_call = await fetch(domain, postObject);
             const data = await api_call.json();
             if (data.token != null) {
-                console.log("data json:",data);
+                console.log("data json:", data);
                 this.setToken(data.token);
                 sessionStorage.setItem('currentUserID', JSON.stringify(data.id));
                 return { data: data, error: null };
@@ -36,17 +34,18 @@ export default {
 
     setToken(token) {
         sessionStorage.setItem('token', token);
-     },
+    },
 
     // getToken() {
     //     return sessionStorage.getItem('token');
     // },
 
-    // logout() {
-    //     console.log("logount confirm");
-    //     sessionStorage.clear();
-    //     sessionStorage.removeItem('token');
-    // },
+    logout() {
+       // console.log("logount confirm");
+        sessionStorage.clear();
+        sessionStorage.removeItem('token');
+        sessionStorage.removeItem('currentUserID');
+    },
     // loggedIn() {
     //     const token = this.getToken();
     //     return !!token && !this.isTokenExpired(token);

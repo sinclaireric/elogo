@@ -4,7 +4,7 @@ import './App.css';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Login from "./components/login.component";
 import PatientsList from './components/patientslist.component';
-
+import AuthService from "./services/AuthService";
 
 
 function App() {
@@ -19,7 +19,7 @@ function App() {
 
               </li>
               <li className="nav-item">
-                <Link className="nav-link"  to={"/"}>Logout</Link>
+                <Link className="nav-link"  onClick={AuthService.logout} to={"/"}>Logout</Link>
               </li>
             </ul>
           </div>
