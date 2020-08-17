@@ -14,12 +14,15 @@ function App() {
         <div className="container">
           <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
             <ul className="navbar-nav ml-auto">
-              <li className="nav-item">
-                <Link className="nav-link" to={"/"}>Login</Link>
 
-              </li>
+              {/* {!AuthService.loggedIn ? */}
+               <li className="nav-item">
+                <Link className="nav-link" to={"/"}>Login</Link>
+              </li> 
+              {/* : null} */}
+
               <li className="nav-item">
-                <Link className="nav-link"  onClick={AuthService.logout} to={"/"}>Logout</Link>
+                <Link className="nav-link" onClick={AuthService.logout} to={"/"}>Logout</Link>
               </li>
             </ul>
           </div>

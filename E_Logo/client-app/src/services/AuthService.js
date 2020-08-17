@@ -1,9 +1,9 @@
+import decode from 'jwt-decode';
 const domain = 'http://localhost:5000/api/SpeechTherapists/authenticate';
 
 export default {
 
     async login(email, password) {
-        // console.log(sessionStorage);
         const postBody = { 'email': email, 'password': password };
 
         const postObject = {
@@ -36,48 +36,52 @@ export default {
         sessionStorage.setItem('token', token);
     },
 
-    // getToken() {
-    //     return sessionStorage.getItem('token');
-    // },
+    getToken() {
+        return sessionStorage.getItem('token');
+    },
 
     logout() {
-       // console.log("logount confirm");
+        // console.log("logount confirm");
         sessionStorage.clear();
         sessionStorage.removeItem('token');
         sessionStorage.removeItem('currentUserID');
     },
-    // loggedIn() {
-    //     const token = this.getToken();
-    //     return !!token && !this.isTokenExpired(token);
-    // },
-    // checkResponseStatus(response) {
 
-    //     // raises an error in case response status is not a success
-    //     if (response.status >= 200 && response.status < 300) { // Success status lies between 200 to 300
-    //         console.log(response);
-    //         return true
-    //     } else {
+    loggedIn() {
+        const token = this.getToken();
+        console.log(token);
+        return !token && !this.isTokenExpired(token);
+    },
+    checkResponseStatus(response) {
 
-    //         console.log(response);
-    //         return false;
-    //     }
-    // },
-    // isTokenExpired(token) {
-    //     try {
-    //         const decoded = decode(token);
-    //         if (decoded.exp < Date.now() / 1000) {
-    //             return true;
-    //         }
-    //         else {
-    //             return false;
-    //         }
-    //     }
-    //     catch (error) {
-    //         return false;
-    //     }
-    // },
-    // getProfile() {
-    //     return decode(this.getToken());
-    // },
+        // raises an error in case response status is not a success
+        if (response.status >= 200 && response.status < 300) { // Success status lies between 200 to 300
+            console.log(response);
+            return true
+        } else {
+
+            console.log(response);
+            return false;
+        }
+    },
+
+    isTokenExpired(token) {
+        try {
+            const decoded = decode(token);
+            if (decoded.exp < Date.now() / 1000) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+        catch (error) {
+            return false;
+        }
+    },
+
+    getProfile() {
+        return decode(this.getToken());
+    },
 
 }

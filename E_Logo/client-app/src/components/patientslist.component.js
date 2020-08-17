@@ -22,15 +22,16 @@ export default function PatientsList() {
   const [errorMessages, setErrorMessages] = React.useState([])
 
   useEffect(() => {
-    if (userConnected.id === -1) {
+    if (userConnected.id === null || userConnected.id === -1) {
       history.push('/');
+    } else {
+      API.get(`/Patients/getallpatients/${userConnected.id}`)
+        .then(res => {
+          setData(res.data)
+        }).catch(error => {
+          history.push('/');
+        })
     }
-    API.get(`/Patients/getallpatients/${userConnected.id}`)
-      .then(res => {
-        setData(res.data)
-      }).catch(error => {
-        console.log("Error")
-      })
   }, [userConnected, history])
 
   const handleRowAdd = (newData, resolve) => {
