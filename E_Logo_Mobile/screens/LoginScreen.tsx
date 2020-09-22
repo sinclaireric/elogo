@@ -12,8 +12,10 @@ import axios from "axios";
 
 export default function LoginScreen({
   login,
+  error,
 }: {
   login: (email: string, password: string) => void;
+  error: any;
 }) {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
@@ -21,7 +23,6 @@ export default function LoginScreen({
   const handleSubmit = () => {
     login(email, password);
   };
-
   return (
     <View style={styles.container}>
       <View style={styles.inputContainer}>
@@ -45,6 +46,7 @@ export default function LoginScreen({
           onChangeText={setPassword}
         />
       </View>
+      {error ? <Text>{error.message}</Text> : null}
 
       <TouchableHighlight
         style={[styles.buttonContainer, styles.loginButton]}

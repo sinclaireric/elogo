@@ -6,12 +6,13 @@ import useCachedResources from "./hooks/useCachedResources";
 import useColorScheme from "./hooks/useColorScheme";
 import Navigation from "./navigation";
 import axios from "axios";
-import { AsyncStorage } from "react-native";
+import AsyncStorage from "@react-native-community/async-storage";
 
 export default function App() {
   const isLoadingComplete = useCachedResources();
   const colorScheme = useColorScheme();
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+  const [error, setError] = React.useState();
 
   const login = (email: string, password: string) => {
     axios({
@@ -24,13 +25,23 @@ export default function App() {
     })
       .then((res) => {
         setIsLoggedIn(true);
-        //add token res.data dans local storage
-        //AsyncStorage.setItem('')
+        saveStorage("CurrentUserID", JSON.stringify(res.data.id));
       })
       .catch((err) => {
-        console.log("handleSubmit -> err3", err);
+        setError(err.response.data);
       });
   };
+
+  //Save dans le storage item doit être string!!!
+  const saveStorage = async (key: string, item: string) => {
+    try {
+      var dataSaved = await AsyncStorage.setItem(key, item);
+      return dataSaved;
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
   if (!isLoadingComplete) {
     return null;
   } else {
@@ -40,6 +51,7 @@ export default function App() {
           isLoggedIn={isLoggedIn}
           login={login}
           colorScheme={colorScheme}
+          error={error}
         />
         <StatusBar />
       </SafeAreaProvider>
