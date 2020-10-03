@@ -77,7 +77,7 @@ namespace E_LOGO.Controller
             if (st == null)
                 return NotFound();
             st.Fullname = patientDTO.Fullname;
-            st.Results = patientDTO.Results;
+            //  st.Results = patientDTO.Results;
             st.Diagnostique = patientDTO.Diagnostique;
             await _context.SaveChangesAsync();
             return CreatedAtAction(nameof(GetOnePatient), new { id = st.Id }, st.ToDTO());
@@ -99,7 +99,7 @@ namespace E_LOGO.Controller
             var newPatient = new Patient()
             {
                 Fullname = patientDTO.Fullname,
-                Results = patientDTO.Results,
+                //  Results = patientDTO.Results,
                 Diagnostique = patientDTO.Diagnostique,
                 LastTaskDone = patientDTO.LastTaskDone,
                 SpeechTherapistID = patientDTO.SpeechTherapistID,

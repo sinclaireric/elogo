@@ -10,7 +10,11 @@ namespace E_LOGO.Models
 
         [Key]
         public int Id { get; set; }
+        public string Name { get; set; }
 
-        public virtual IList<Responses> Responses { get; set; } = new List<Responses>();
+        public IList<Stimuli> Stimulis { get; set; } = new List<Stimuli>();
+
+        [NotMapped]
+        public IList<Response> Responses { get; set; } = new List<Response>();
     }
 }

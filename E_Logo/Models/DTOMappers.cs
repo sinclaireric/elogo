@@ -76,11 +76,11 @@ namespace E_LOGO.Models
 
                 Id = p.Id,
                 Fullname = p.Fullname,
-                Results = p.Results,
+                // Results = p.Results,
                 Diagnostique = p.Diagnostique,
                 LastTaskDone = p.LastTaskDone,
                 SpeechTherapistID = p.SpeechTherapistID,
-               // SpeechTherapistDTO = p.SpeechTherapist.ToDTO(),
+                // SpeechTherapistDTO = p.SpeechTherapist.ToDTO(),
             };
 
         }

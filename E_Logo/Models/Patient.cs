@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -11,7 +12,7 @@ namespace E_LOGO.Models
 
         [Required(ErrorMessage = "Required")]
         public string Fullname { get; set; }
-        public string Results { get; set; }
+        public virtual IList<Response> Responses { get; set; } = new List<Response>();
         public string Diagnostique { get; set; }
         public string LastTaskDone { get; set; }
         public int SpeechTherapistID { get; set; }
