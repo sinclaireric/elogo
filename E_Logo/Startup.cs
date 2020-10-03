@@ -95,7 +95,7 @@ namespace E_LOGO
                                         // ... on ajoute un header à destination du front-end indiquant cette expiration
                                         context.Response.Headers.Add("Token-Expired", "true");
                                     }
-                                    return Task.CompletedTask;
+                                    return System.Threading.Tasks.Task.CompletedTask;
                                 }
                     };
                 });

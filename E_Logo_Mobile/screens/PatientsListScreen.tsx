@@ -6,6 +6,10 @@ import {
   ActivityIndicator,
   Text,
   TextInput,
+  TouchableOpacity,
+  Modal,
+  TouchableHighlight,
+  Alert,
 } from "react-native";
 import axios from "axios";
 import AsyncStorage from "@react-native-community/async-storage";
@@ -17,6 +21,9 @@ export default function PatientsListScreen() {
   const [error, setError] = React.useState(null);
   const [query, setQuery] = React.useState("");
   const [fullData, setFullData] = React.useState([]);
+  const [selectedId, setSelectedId] = React.useState(null);
+  const [modalVisible, setModalVisible] = React.useState(false);
+  const [Patient, setPatient] = React.useState<any[any]>();
 
   useEffect(() => {
     async function getData() {
@@ -34,26 +41,32 @@ export default function PatientsListScreen() {
           setError(err);
         });
     }
-
+    displayLoadingOrError();
     getData();
   }, []);
 
-  if (isLoading) {
-    return (
-      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        <ActivityIndicator size="large" color="#5500dc" />
-      </View>
-    );
-  }
+  function displayLoadingOrError() {
+    if (isLoading) {
+      return (
+        <View
+          style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
+        >
+          <ActivityIndicator size="large" color="#5500dc" />
+        </View>
+      );
+    }
 
-  if (error) {
-    return (
-      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        <Text style={{ fontSize: 18 }}>
-          Error fetching data... Check your network connection!
-        </Text>
-      </View>
-    );
+    if (error) {
+      return (
+        <View
+          style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
+        >
+          <Text style={{ fontSize: 18 }}>
+            Error fetching data... Check your network connection!
+          </Text>
+        </View>
+      );
+    }
   }
 
   //Lis des données dans le storage gâce à la key passée.
@@ -83,6 +96,56 @@ export default function PatientsListScreen() {
     return false;
   };
 
+  const Item = ({
+    item,
+    onPress,
+    style,
+  }: {
+    item: any;
+    onPress: any;
+    style: any;
+  }) => (
+    <TouchableOpacity onPress={onPress} style={[styles.item, style]}>
+      <Text style={styles.title}>{`${item.fullname}`}</Text>
+    </TouchableOpacity>
+  );
+
+  const renderItem = ({ item }: { item: any }) => {
+    const backgroundColor = item.id === selectedId ? "grey" : "#fff";
+
+    return (
+      <Item
+        item={item}
+        onPress={() => {
+          console.log("renderItem -> item.id", item.id);
+          setSelectedId(item.id);
+
+          console.log("In Item after set", selectedId);
+          setModalVisible(true);
+          getPatientName();
+        }}
+        style={{ backgroundColor }}
+      />
+    );
+  };
+
+  const getPatientName = () => {
+    async function getPatient() {
+      //  console.log("in get", selectedId);
+      await axios
+        .get(`http://localhost:5000/api/Patients/${selectedId}`)
+        .then((res) => {
+          //console.log("getPatient -> res", res.data);//work
+          setPatient(res.data);
+        })
+        .catch((err) => {
+          setError(err);
+        });
+    }
+    setModalVisible(true);
+    getPatient();
+  };
+
   function renderHeader() {
     return (
       <View
@@ -108,18 +171,59 @@ export default function PatientsListScreen() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Patients List</Text>
+      <Text style={styles.text}>Liste des patients</Text>
+      {Patient !== undefined ? (
+        <Modal
+          animationType="slide"
+          transparent={true}
+          visible={modalVisible}
+          onRequestClose={() => {
+            Alert.alert("Modal has been closed.");
+          }}
+        >
+          <View style={styles.centeredView}>
+            <View style={styles.modalView}>
+              <Text style={styles.modalText}>
+                Commencer le test de
+                {Patient.fullname}{" "}
+              </Text>
+              <View style={styles.modalButton}>
+                <TouchableHighlight
+                  style={{
+                    ...styles.openButton,
+                    backgroundColor: "#rgb(240, 91, 86)",
+                  }}
+                  onPress={() => {
+                    setModalVisible(!modalVisible);
+                  }}
+                >
+                  <Text style={styles.textStyle}>Non</Text>
+                </TouchableHighlight>
+
+                <TouchableHighlight
+                  style={{
+                    ...styles.openButton,
+                    backgroundColor: "#rgb(240, 91, 86)",
+                  }}
+                  onPress={() => {
+                    setModalVisible(!modalVisible);
+                  }}
+                >
+                  <Text style={styles.textStyle}>Oui</Text>
+                </TouchableHighlight>
+              </View>
+            </View>
+          </View>
+        </Modal>
+      ) : (
+        console.log("hello")
+      )}
       <FlatList
         ListHeaderComponent={renderHeader}
         data={DATA}
         keyExtractor={(item) => item.id.toString()}
-        renderItem={({ item }) => (
-          <View style={styles.listItem}>
-            <View style={styles.metaInfo}>
-              <Text style={styles.title}>{`${item.fullname}`}</Text>
-            </View>
-          </View>
-        )}
+        renderItem={renderItem}
+        extraData={selectedId}
       />
     </View>
   );
@@ -137,6 +241,12 @@ const styles = StyleSheet.create({
     color: "#101010",
     marginTop: 60,
     fontWeight: "700",
+  },
+  item: {
+    borderRadius: 20,
+    padding: 8,
+    marginVertical: 8,
+    marginHorizontal: 16,
   },
   listItem: {
     marginTop: 10,
@@ -157,5 +267,44 @@ const styles = StyleSheet.create({
     fontSize: 18,
     width: 200,
     padding: 10,
+  },
+  centeredView: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 22,
+  },
+  modalView: {
+    margin: 20,
+    backgroundColor: "white",
+    borderRadius: 20,
+    padding: 35,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+  },
+  openButton: {
+    backgroundColor: "#F194FF",
+    borderRadius: 20,
+    padding: 10,
+    elevation: 2,
+  },
+  textStyle: {
+    color: "white",
+    fontWeight: "bold",
+    textAlign: "center",
+  },
+  modalText: {
+    marginBottom: 15,
+    textAlign: "center",
+  },
+  modalButton: {
+    flexDirection: "row",
   },
 });
