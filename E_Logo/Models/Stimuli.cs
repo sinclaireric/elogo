@@ -14,6 +14,6 @@ namespace E_LOGO.Models
         [Required]
         public int TaskID { get; set; }
         public virtual Task Task { get; set; }
-        public virtual IList<Response> Responses { get; set; } = new List<Response>();
+        public virtual List<Response> Responses { get; set; } = new List<Response>();
     }
 }

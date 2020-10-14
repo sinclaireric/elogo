@@ -11,6 +11,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.EntityFrameworkCore.Diagnostics;
+using Newtonsoft.Json;
 
 namespace E_LOGO
 {
@@ -29,7 +31,8 @@ namespace E_LOGO
             //services.AddDbContext<E_LOGOContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("ELOGODB-mssql")));
             services.AddDbContext<E_LOGOContext>(opt =>
             {
-                //opt.UseLazyLoadingProxies();
+                opt.UseLazyLoadingProxies();
+                opt.ConfigureWarnings(warnings => warnings.Ignore(CoreEventId.DetachedLazyLoadingWarning));
                 opt.UseMySql(Configuration.GetConnectionString("ELOGODB-mysql"));
             });
 
@@ -46,10 +49,11 @@ namespace E_LOGO
             });
 
             services.AddControllers();
+
             services.AddMvc()
             .AddNewtonsoftJson(options =>
             {
-                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+                options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
             });
             //------------------------------
             // configure jwt authentication
@@ -109,11 +113,13 @@ namespace E_LOGO
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+
             }
             app.UseCors("AllowAll");
             app.UseHttpsRedirection();
 
             app.UseRouting();
+            app.UseDeveloperExceptionPage();
 
             app.UseAuthorization();
             app.UseAuthentication();

@@ -141,13 +141,11 @@ C:\Users\Matilde\Documents\EPFC\ING3A\TFE\Projects\E_LOGO\E_LOGO\bin\Debug\netco
 C:\Users\Matilde\Documents\EPFC\ING3A\TFE\Projects\E_LOGO\E_LOGO\bin\Debug\netcoreapp3.1\Microsoft.CodeAnalysis.CSharp.Workspaces.dll
 C:\Users\Matilde\Documents\EPFC\ING3A\TFE\Projects\E_LOGO\E_LOGO\bin\Debug\netcoreapp3.1\Microsoft.CodeAnalysis.Razor.dll
 C:\Users\Matilde\Documents\EPFC\ING3A\TFE\Projects\E_LOGO\E_LOGO\bin\Debug\netcoreapp3.1\Microsoft.CodeAnalysis.Workspaces.dll
-C:\Users\Matilde\Documents\EPFC\ING3A\TFE\Projects\E_LOGO\E_LOGO\bin\Debug\netcoreapp3.1\Microsoft.Data.SqlClient.dll
 C:\Users\Matilde\Documents\EPFC\ING3A\TFE\Projects\E_LOGO\E_LOGO\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.dll
 C:\Users\Matilde\Documents\EPFC\ING3A\TFE\Projects\E_LOGO\E_LOGO\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Abstractions.dll
 C:\Users\Matilde\Documents\EPFC\ING3A\TFE\Projects\E_LOGO\E_LOGO\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Design.dll
 C:\Users\Matilde\Documents\EPFC\ING3A\TFE\Projects\E_LOGO\E_LOGO\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.InMemory.dll
 C:\Users\Matilde\Documents\EPFC\ING3A\TFE\Projects\E_LOGO\E_LOGO\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Relational.dll
-C:\Users\Matilde\Documents\EPFC\ING3A\TFE\Projects\E_LOGO\E_LOGO\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.SqlServer.dll
 C:\Users\Matilde\Documents\EPFC\ING3A\TFE\Projects\E_LOGO\E_LOGO\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Caching.Abstractions.dll
 C:\Users\Matilde\Documents\EPFC\ING3A\TFE\Projects\E_LOGO\E_LOGO\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Caching.Memory.dll
 C:\Users\Matilde\Documents\EPFC\ING3A\TFE\Projects\E_LOGO\E_LOGO\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.dll
@@ -159,7 +157,6 @@ C:\Users\Matilde\Documents\EPFC\ING3A\TFE\Projects\E_LOGO\E_LOGO\bin\Debug\netco
 C:\Users\Matilde\Documents\EPFC\ING3A\TFE\Projects\E_LOGO\E_LOGO\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Logging.Abstractions.dll
 C:\Users\Matilde\Documents\EPFC\ING3A\TFE\Projects\E_LOGO\E_LOGO\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Options.dll
 C:\Users\Matilde\Documents\EPFC\ING3A\TFE\Projects\E_LOGO\E_LOGO\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Primitives.dll
-C:\Users\Matilde\Documents\EPFC\ING3A\TFE\Projects\E_LOGO\E_LOGO\bin\Debug\netcoreapp3.1\Microsoft.Identity.Client.dll
 C:\Users\Matilde\Documents\EPFC\ING3A\TFE\Projects\E_LOGO\E_LOGO\bin\Debug\netcoreapp3.1\Microsoft.VisualStudio.Web.CodeGeneration.dll
 C:\Users\Matilde\Documents\EPFC\ING3A\TFE\Projects\E_LOGO\E_LOGO\bin\Debug\netcoreapp3.1\Microsoft.VisualStudio.Web.CodeGeneration.Contracts.dll
 C:\Users\Matilde\Documents\EPFC\ING3A\TFE\Projects\E_LOGO\E_LOGO\bin\Debug\netcoreapp3.1\Microsoft.VisualStudio.Web.CodeGeneration.Core.dll
@@ -175,9 +172,6 @@ C:\Users\Matilde\Documents\EPFC\ING3A\TFE\Projects\E_LOGO\E_LOGO\bin\Debug\netco
 C:\Users\Matilde\Documents\EPFC\ING3A\TFE\Projects\E_LOGO\E_LOGO\bin\Debug\netcoreapp3.1\System.Composition.Hosting.dll
 C:\Users\Matilde\Documents\EPFC\ING3A\TFE\Projects\E_LOGO\E_LOGO\bin\Debug\netcoreapp3.1\System.Composition.Runtime.dll
 C:\Users\Matilde\Documents\EPFC\ING3A\TFE\Projects\E_LOGO\E_LOGO\bin\Debug\netcoreapp3.1\System.Composition.TypedParts.dll
-C:\Users\Matilde\Documents\EPFC\ING3A\TFE\Projects\E_LOGO\E_LOGO\bin\Debug\netcoreapp3.1\System.Configuration.ConfigurationManager.dll
-C:\Users\Matilde\Documents\EPFC\ING3A\TFE\Projects\E_LOGO\E_LOGO\bin\Debug\netcoreapp3.1\System.Runtime.Caching.dll
-C:\Users\Matilde\Documents\EPFC\ING3A\TFE\Projects\E_LOGO\E_LOGO\bin\Debug\netcoreapp3.1\System.Security.Cryptography.ProtectedData.dll
 C:\Users\Matilde\Documents\EPFC\ING3A\TFE\Projects\E_LOGO\E_LOGO\bin\Debug\netcoreapp3.1\cs\Microsoft.CodeAnalysis.resources.dll
 C:\Users\Matilde\Documents\EPFC\ING3A\TFE\Projects\E_LOGO\E_LOGO\bin\Debug\netcoreapp3.1\de\Microsoft.CodeAnalysis.resources.dll
 C:\Users\Matilde\Documents\EPFC\ING3A\TFE\Projects\E_LOGO\E_LOGO\bin\Debug\netcoreapp3.1\es\Microsoft.CodeAnalysis.resources.dll
@@ -230,14 +224,6 @@ C:\Users\Matilde\Documents\EPFC\ING3A\TFE\Projects\E_LOGO\E_LOGO\bin\Debug\netco
 C:\Users\Matilde\Documents\EPFC\ING3A\TFE\Projects\E_LOGO\E_LOGO\bin\Debug\netcoreapp3.1\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\Matilde\Documents\EPFC\ING3A\TFE\Projects\E_LOGO\E_LOGO\bin\Debug\netcoreapp3.1\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\Matilde\Documents\EPFC\ING3A\TFE\Projects\E_LOGO\E_LOGO\bin\Debug\netcoreapp3.1\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
-C:\Users\Matilde\Documents\EPFC\ING3A\TFE\Projects\E_LOGO\E_LOGO\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.1\Microsoft.Data.SqlClient.dll
-C:\Users\Matilde\Documents\EPFC\ING3A\TFE\Projects\E_LOGO\E_LOGO\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1\Microsoft.Data.SqlClient.dll
-C:\Users\Matilde\Documents\EPFC\ING3A\TFE\Projects\E_LOGO\E_LOGO\bin\Debug\netcoreapp3.1\runtimes\win-arm64\native\sni.dll
-C:\Users\Matilde\Documents\EPFC\ING3A\TFE\Projects\E_LOGO\E_LOGO\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\sni.dll
-C:\Users\Matilde\Documents\EPFC\ING3A\TFE\Projects\E_LOGO\E_LOGO\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\sni.dll
-C:\Users\Matilde\Documents\EPFC\ING3A\TFE\Projects\E_LOGO\E_LOGO\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.0\System.Runtime.Caching.dll
-C:\Users\Matilde\Documents\EPFC\ING3A\TFE\Projects\E_LOGO\E_LOGO\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
-C:\Users\Matilde\Documents\EPFC\ING3A\TFE\Projects\E_LOGO\E_LOGO\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\Matilde\Documents\EPFC\ING3A\TFE\Projects\E_LOGO\E_LOGO\obj\Debug\netcoreapp3.1\E_LOGO.csprojAssemblyReference.cache
 C:\Users\Matilde\Documents\EPFC\ING3A\TFE\Projects\E_LOGO\E_LOGO\obj\Debug\netcoreapp3.1\E_LOGO.csproj.CoreCompileInputs.cache
 C:\Users\Matilde\Documents\EPFC\ING3A\TFE\Projects\E_LOGO\E_LOGO\obj\Debug\netcoreapp3.1\E_LOGO.MvcApplicationPartsAssemblyInfo.cache
@@ -408,3 +394,7 @@ C:\Users\Matilde\Documents\EPFC\ING3A\TFE\Projects from bitbucket\e_logo\E_Logo\
 C:\Users\Matilde\Documents\EPFC\ING3A\TFE\Projects from bitbucket\e_logo\E_Logo\obj\Debug\netcoreapp3.1\E_Logo.dll
 C:\Users\Matilde\Documents\EPFC\ING3A\TFE\Projects from bitbucket\e_logo\E_Logo\obj\Debug\netcoreapp3.1\E_Logo.pdb
 C:\Users\Matilde\Documents\EPFC\ING3A\TFE\Projects from bitbucket\e_logo\E_Logo\obj\Debug\netcoreapp3.1\E_Logo.genruntimeconfig.cache
+C:\Users\Matilde\Documents\EPFC\ING3A\TFE\Projects\e_logo\E_Logo\bin\Debug\netcoreapp3.1\Castle.Core.dll
+C:\Users\Matilde\Documents\EPFC\ING3A\TFE\Projects\e_logo\E_Logo\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Proxies.dll
+C:\Users\Matilde\Documents\EPFC\ING3A\TFE\Projects\e_logo\E_Logo\bin\Debug\netcoreapp3.1\System.Collections.Immutable.dll
+C:\Users\Matilde\Documents\EPFC\ING3A\TFE\Projects\e_logo\E_Logo\bin\Debug\netcoreapp3.1\System.Diagnostics.DiagnosticSource.dll

@@ -101,7 +101,7 @@ namespace E_LOGO.Controller
                 Fullname = patientDTO.Fullname,
                 //  Results = patientDTO.Results,
                 Diagnostique = patientDTO.Diagnostique,
-                LastTaskDone = patientDTO.LastTaskDone,
+                LastTaskDoneID = patientDTO.LastTaskDoneID,
                 SpeechTherapistID = patientDTO.SpeechTherapistID,
             };
             _context.Patients.Add(newPatient);

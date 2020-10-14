@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using E_LOGO.Models;
+using Microsoft.AspNetCore;
 
 namespace E_LOGO
 {
@@ -13,14 +15,12 @@ namespace E_LOGO
     {
         public static void Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
+            CreateWebHostBuilder(args).Build().Seed().Run();
         }
 
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder.UseStartup<Startup>();
-                });
+        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
+                 WebHost.CreateDefaultBuilder(args)
+                   .UseSetting(WebHostDefaults.DetailedErrorsKey, "true")
+                .UseStartup<Startup>();
     }
 }

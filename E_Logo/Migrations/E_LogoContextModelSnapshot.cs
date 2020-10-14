@@ -14,7 +14,7 @@ namespace E_LOGO.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.3")
+                .HasAnnotation("ProductVersion", "3.1.8")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
             modelBuilder.Entity("E_LOGO.Models.Patient", b =>
@@ -30,8 +30,8 @@ namespace E_LOGO.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
 
-                    b.Property<string>("LastTaskDone")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                    b.Property<int>("LastTaskDoneID")
+                        .HasColumnType("int");
 
                     b.Property<int>("SpeechTherapistID")
                         .HasColumnType("int");
@@ -44,72 +44,6 @@ namespace E_LOGO.Migrations
                     b.HasIndex("SpeechTherapistID");
 
                     b.ToTable("Patients");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Diagnostique = "dyslexique",
-                            Fullname = "Pablo cousu",
-                            LastTaskDone = "no one",
-                            SpeechTherapistID = 2
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Diagnostique = "dyslexique",
-                            Fullname = "Maido kapo",
-                            LastTaskDone = "5B",
-                            SpeechTherapistID = 1
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Diagnostique = "aphasique",
-                            Fullname = "Jojo tousk",
-                            LastTaskDone = "17A",
-                            SpeechTherapistID = 1
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Diagnostique = "dyslexique",
-                            Fullname = "Charline Dupont",
-                            LastTaskDone = "5B",
-                            SpeechTherapistID = 1
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Diagnostique = "dyslexique",
-                            Fullname = "Benoit Blanc",
-                            LastTaskDone = "5B",
-                            SpeechTherapistID = 2
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Diagnostique = "dyslexique",
-                            Fullname = "Maxime Gros",
-                            LastTaskDone = "5B",
-                            SpeechTherapistID = 2
-                        },
-                        new
-                        {
-                            Id = 7,
-                            Diagnostique = "dyslexique",
-                            Fullname = "Elodie Filou",
-                            LastTaskDone = "5B",
-                            SpeechTherapistID = 1
-                        },
-                        new
-                        {
-                            Id = 8,
-                            Diagnostique = "dyslexique",
-                            Fullname = "Julie Desprez",
-                            LastTaskDone = "5B",
-                            SpeechTherapistID = 2
-                        });
                 });
 
             modelBuilder.Entity("E_LOGO.Models.Response", b =>
@@ -121,80 +55,38 @@ namespace E_LOGO.Migrations
                     b.Property<string>("Choice")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.Property<int?>("PatientId")
-                        .HasColumnType("int");
-
                     b.Property<int>("StimuliID")
                         .HasColumnType("int");
 
                     b.Property<int>("Type")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.Property<bool>("isGoodAnswer")
+                        .HasColumnType("tinyint(1)");
 
-                    b.HasIndex("PatientId");
+                    b.HasKey("Id");
 
                     b.HasIndex("StimuliID");
 
-                    b.ToTable("Response");
+                    b.ToTable("Responses");
+                });
 
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Choice = "a",
-                            StimuliID = 1,
-                            Type = 1
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Choice = "h",
-                            StimuliID = 1,
-                            Type = 1
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Choice = "d",
-                            StimuliID = 2,
-                            Type = 1
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Choice = "b",
-                            StimuliID = 2,
-                            Type = 1
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Choice = "o",
-                            StimuliID = 3,
-                            Type = 1
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Choice = "c",
-                            StimuliID = 3,
-                            Type = 1
-                        },
-                        new
-                        {
-                            Id = 7,
-                            Choice = "n",
-                            StimuliID = 4,
-                            Type = 1
-                        },
-                        new
-                        {
-                            Id = 8,
-                            Choice = "d",
-                            StimuliID = 4,
-                            Type = 1
-                        });
+            modelBuilder.Entity("E_LOGO.Models.ResponsesPatient", b =>
+                {
+                    b.Property<int>("PatientID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ResponseID")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime(6)");
+
+                    b.HasKey("PatientID", "ResponseID");
+
+                    b.HasIndex("ResponseID");
+
+                    b.ToTable("ResponsesPatient");
                 });
 
             modelBuilder.Entity("E_LOGO.Models.SpeechTherapist", b =>
@@ -225,24 +117,6 @@ namespace E_LOGO.Migrations
                         .IsUnique();
 
                     b.ToTable("SpeechTherapists");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Email = "matilde",
-                            Firstname = "Matilde",
-                            Lastname = "Gravano",
-                            Password = "matilde"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Email = "pelagie",
-                            Firstname = "Pélagie",
-                            Lastname = "Campos",
-                            Password = "pelagie"
-                        });
                 });
 
             modelBuilder.Entity("E_LOGO.Models.Stimuli", b =>
@@ -264,33 +138,7 @@ namespace E_LOGO.Migrations
 
                     b.HasIndex("TaskID");
 
-                    b.ToTable("Stimuli");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "A",
-                            TaskID = 1
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "B",
-                            TaskID = 1
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Name = "C",
-                            TaskID = 1
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Name = "D",
-                            TaskID = 1
-                        });
+                    b.ToTable("Stimulis");
                 });
 
             modelBuilder.Entity("E_LOGO.Models.Task", b =>
@@ -307,24 +155,7 @@ namespace E_LOGO.Migrations
                     b.HasIndex("Name")
                         .IsUnique();
 
-                    b.ToTable("Task");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Tâche 1: appariement de lettres"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "Tâche 2 : Lecture de mots"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Name = "Tâche 3: Dénomination des objets"
-                        });
+                    b.ToTable("Tasks");
                 });
 
             modelBuilder.Entity("E_LOGO.Models.Patient", b =>
@@ -338,13 +169,24 @@ namespace E_LOGO.Migrations
 
             modelBuilder.Entity("E_LOGO.Models.Response", b =>
                 {
-                    b.HasOne("E_LOGO.Models.Patient", null)
-                        .WithMany("Responses")
-                        .HasForeignKey("PatientId");
-
                     b.HasOne("E_LOGO.Models.Stimuli", "Stimuli")
                         .WithMany("Responses")
                         .HasForeignKey("StimuliID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("E_LOGO.Models.ResponsesPatient", b =>
+                {
+                    b.HasOne("E_LOGO.Models.Patient", "Patient")
+                        .WithMany("ResponsesPatient")
+                        .HasForeignKey("PatientID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("E_LOGO.Models.Response", "Response")
+                        .WithMany("ResponsesPatients")
+                        .HasForeignKey("ResponseID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
