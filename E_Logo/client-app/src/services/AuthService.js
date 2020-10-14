@@ -45,12 +45,12 @@ export default {
         sessionStorage.clear();
         sessionStorage.removeItem('token');
         sessionStorage.removeItem('currentUserID');
+        window.location.reload(false);
     },
 
     loggedIn() {
         const token = this.getToken();
-        console.log(token);
-        return !token && !this.isTokenExpired(token);
+        return token && !this.isTokenExpired(token);
     },
     checkResponseStatus(response) {
 

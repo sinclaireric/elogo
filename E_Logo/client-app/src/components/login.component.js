@@ -33,7 +33,7 @@ class Login extends Component {
             this.setState({
                 invalidLogin: false
             });
-            setTimeout(() => { this.props.history.replace('/home') }, 1000);
+            setTimeout(() => {  this.props.history.push('/patients') ;  window.location.reload(false);}, 1000);
         } else {
             this.setState({
                 error: this.props.STReducer.error,

@@ -68,21 +68,18 @@ namespace E_LOGO.Controller
             if (st == null)
                 return NotFound();
             st.Name = taskDTO.Name;
-            if (taskDTO.Stimulis != null)
-            {
-                st.Stimulis.Clear();
-                await _context.SaveChangesAsync();
-                taskDTO.Stimulis.ForEach((s) =>
-                {
-                    var news = new Stimuli
-                    {
-                        Id = s.Id,
-                        Name = s.Name
-                    };
-                    _context.Stimulis.Add(news);
-
-                });
-            }
+            // if (taskDTO.Stimulis != null)
+            // {
+            //     taskDTO.Stimulis.ForEach((t) =>
+            //             {
+            //                 var stimuli = _context.Stimulis.CreateProxy();
+            //                 stimuli.TaskID = t.TaskID;
+            //                 stimuli.Name = t.Name;
+            //                 // stimuli.Id = t.Id;
+            //                 _context.Stimulis.Add(stimuli);
+            //             });
+            //     await _context.SaveChangesAsync();
+            // }
             await _context.SaveChangesAsync();
             return CreatedAtAction(nameof(GetOneTask), new { id = st.Id }, st.ToDTO());
             // var res = await _context.SaveChangesAsyncWithValidation();
