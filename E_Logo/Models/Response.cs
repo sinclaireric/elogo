@@ -8,7 +8,7 @@ namespace E_LOGO.Models
 
     public enum Types
     {
-        Choices = 1, Vocal = 2, Photo = 3,
+        Choices = 0, Vocal = 1, Photo = 2,
     }
     public class Response
     {

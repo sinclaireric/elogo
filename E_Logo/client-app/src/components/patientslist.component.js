@@ -9,10 +9,16 @@ export default function PatientsList() {
   const userConnected = useSelector((state) => state.userConnected);
   const history = useHistory();
   var columns = [
-    { title: "Fullname", field: "fullname" },
-    { title: "Results", field: "results" },
+    { title: "Fullname", field: "fullname" }, 
+      {title: "Note",field:""},
     { title: "Diagnostic", field: "diagnostique" },
-    { title: "Last Task Done", field: "lastTaskDone" },
+  ];
+  var columnsResponses = [
+    {title:"Stimuli",field:"stimuli.name"},
+ 
+    {title:"Type", field:"type",lookup: { 0: 'Choix', 1: 'Vocal',2:'Photo' },},
+    {title: "Choice", field: "choice" },
+    {title:"Bonne réponse", field:"isGoodAnswer",lookup: { true: 'Oui', false: 'Non' },},
   ];
   const [data, setData] = React.useState([]); //table data
   //for error handling
@@ -156,6 +162,32 @@ export default function PatientsList() {
             new Promise((resolve) => {
               handleRowDelete(oldData, resolve);
             }),
+        }}
+        detailPanel={(rowData) => {
+          return (
+            rowData.responses && (
+              <div
+                style={{
+                  background: 'rgb(240, 91, 86)',
+                 padding: '10px 0px 10px 20px',
+                }}
+              >
+                {/* Responses Table */}
+                <MaterialTable
+                              options={{
+                                  pageSize: 5,
+                                  pageSizeOptions: [5,10,20],
+                                  toolbar: true,
+                                  paging: true,
+                                }}
+                //  icons={tableIcons}
+                  title={'Responses'}
+                  columns={columnsResponses}
+                  data={rowData.responses}
+                />
+              </div>
+            )
+          );
         }}
       />
     </div>

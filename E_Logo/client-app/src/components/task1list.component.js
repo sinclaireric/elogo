@@ -5,9 +5,13 @@ import Alert from "@material-ui/lab/Alert";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 
+
 export default function TasksList() {
+
   const userConnected = useSelector((state) => state.userConnected);
   const history = useHistory();
+
+  //const type = {"0":"Choices","1":"Vocal","2":"Photo"};
   var columns = [
     
     { title: "Name", field: "name" },
@@ -18,9 +22,9 @@ export default function TasksList() {
   ];
   var columnsResponses = [
     
-    {title:"Type", field:"type"},
-    { title: "Choice", field: "choice" },
-    {title:"Bonne réponse", field:"isGoodAnswer"},
+    {title:"Type", field:"type",lookup: { 0: 'Choix', 1: 'Vocal',2:'Photo' },},
+    {title: "Choice", field: "choice" },
+    {title:"Bonne réponse", field:"isGoodAnswer",lookup: { true: 'Oui', false: 'Non' },},
   ];
   const [data, setData] = React.useState([]); //table data
   //for error handling
@@ -45,7 +49,7 @@ export default function TasksList() {
   const handleRowAdd = (newData, resolve) => {
     //validation
     let errorList = [];
-    newData.speechTherapistID = userConnected.id;
+    //newData.speechTherapistID = userConnected.id;
     if (newData.name === undefined) {
       errorList.push("Please enter a name");
     }
@@ -124,10 +128,10 @@ export default function TasksList() {
   //END TASKS EDITABLE
 
   //STIMULIS EDITABLE
-  const handleRowAddStimulis = (newData, resolve) => {
+  const handleRowAddStimulis = (newData, taskid,resolve) => {
     //validation
     let errorList = [];
-    newData.speechTherapistID = userConnected.id;
+    newData.taskid = taskid;
     if (newData.name === undefined) {
       errorList.push("Please enter a name");
     }
@@ -206,11 +210,12 @@ export default function TasksList() {
     //END STIMULIS EDITABLE
 
     //RESPONSES EDITABLE
-    const handleRowAddResponses = (newData, resolve) => {
+    const handleRowAddResponses = (newData,stimuliid, resolve) => {
         //validation
         let errorList = [];
-        newData.speechTherapistID = userConnected.id;
-        if (newData.name === undefined) {
+        newData.stimuliid = stimuliid;
+        console.log(newData);
+        if (newData.choice === undefined) {
           errorList.push("Please enter a choice");
         }
         if (errorList.length < 1) {
@@ -292,7 +297,7 @@ export default function TasksList() {
   }
 
   return (
-    <div className="App">
+    <>
       <div>
         {iserror && (
           <Alert severity="error">
@@ -330,6 +335,7 @@ export default function TasksList() {
               }}
             detailPanel={(rowData) => {
               return (
+                // taskid = rowData.id;
                 rowData.stimulis && (
                   <div
                     style={{
@@ -340,14 +346,14 @@ export default function TasksList() {
                     {/* Stimulis Table */}
                     <MaterialTable
                                   options={{
-                                    pageSize: 3,
+                                    pageSize: 5,
                                     pageSizeOptions: [5, 10, 20, 30, 50, 75, 100],
                                     toolbar: true,
                                     paging: true,
                                   }}
                       //icons={tableIcons}
                       title={'Stimulis'}
-                              columns={columnsStimulis}
+                      columns={columnsStimulis}
                       data={rowData.stimulis}
                       editable={{
                         onRowUpdate: (newData, oldData) =>
@@ -356,7 +362,7 @@ export default function TasksList() {
                           }),
                         onRowAdd: (newData) =>
                           new Promise((resolve) => {
-                            handleRowAddStimulis(newData, resolve);
+                            handleRowAddStimulis(newData,rowData.id, resolve);
                           }),
                         onRowDelete: (oldData) =>
                           new Promise((resolve) => {
@@ -369,14 +375,14 @@ export default function TasksList() {
                             <div
                               style={{
                                 background: 'rgb(240, 91, 86)',
-                               padding: '10px px 10px 20px',
+                               padding: '10px 0px 10px 20px',
                               }}
                             >
                               {/* Responses Table */}
                               <MaterialTable
                                             options={{
                                                 pageSize: 2,
-                                                pageSizeOptions: [5, 10, 20, 30, 50, 75, 100],
+                                                pageSizeOptions: [2],
                                                 toolbar: true,
                                                 paging: true,
                                               }}
@@ -391,7 +397,7 @@ export default function TasksList() {
                                       }),
                                     onRowAdd: (newData) =>
                                       new Promise((resolve) => {
-                                        handleRowAddResponses(newData, resolve);
+                                        handleRowAddResponses(newData,rowData.id, resolve);
                                       }),
                                     onRowDelete: (oldData) =>
                                       new Promise((resolve) => {
@@ -409,6 +415,6 @@ export default function TasksList() {
               );
             }}
           />
-    </div>
+    </>
   );
 }

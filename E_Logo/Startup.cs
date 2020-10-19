@@ -13,6 +13,7 @@ using System.Text;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Newtonsoft.Json;
+using Microsoft.Net.Http.Headers;
 
 namespace E_LOGO
 {
@@ -38,6 +39,12 @@ namespace E_LOGO
 
             services.AddCors(options =>
             {
+                options.AddPolicy("Policy1", builder =>
+                {
+                    builder.WithOrigins("http://localhost:3000")
+                    .WithMethods("POST", "GET", "PUT", "DELETE")
+                    .WithHeaders(HeaderNames.ContentType);
+                });
                 options.AddPolicy("AllowAll",
                     builder =>
                     {
@@ -115,6 +122,7 @@ namespace E_LOGO
                 app.UseDeveloperExceptionPage();
 
             }
+            app.UseCors("Policy1");
             app.UseCors("AllowAll");
             app.UseHttpsRedirection();
 

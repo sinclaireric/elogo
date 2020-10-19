@@ -7,6 +7,8 @@ import useColorScheme from "./hooks/useColorScheme";
 import Navigation from "./navigation";
 import axios from "axios";
 import AsyncStorage from "@react-native-community/async-storage";
+import "react-native-gesture-handler";
+import { NavigationContainer } from "@react-navigation/native";
 
 export default function App() {
   const isLoadingComplete = useCachedResources();
@@ -46,6 +48,7 @@ export default function App() {
     return null;
   } else {
     return (
+      // <NavigationContainer>
       <SafeAreaProvider>
         <Navigation
           isLoggedIn={isLoggedIn}
@@ -55,6 +58,7 @@ export default function App() {
         />
         <StatusBar />
       </SafeAreaProvider>
+      // </NavigationContainer>
     );
   }
 }

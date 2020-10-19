@@ -87,7 +87,7 @@ namespace E_LOGO.Models
                     Id = t.Id,
                     Choice = t.Choice,
                     StimuliID = t.StimuliID,
-                    // Stimuli = t.Stimuli.ToDTO(),
+                    Stimuli = t.Stimuli.ToDTO(),
                     isGoodAnswer = t.isGoodAnswer
                 }).ToList()
             };
@@ -145,6 +145,7 @@ namespace E_LOGO.Models
                 Id = t.Id,
                 Name = t.Name,
                 TaskID = t.TaskID,
+                // FormFile = t.FormFile,
                 // Task = t.Task.ToDTO(),
                 Responses = t.Responses.ToDTO()
             };

@@ -4,7 +4,7 @@ import './App.css';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Login from "./components/login.component";
 import PatientsList from './components/patientslist.component';
-import TasksList from '././components/taskslist.component'
+import TasksList from '././components/task1list.component'
 import AuthService from "./services/AuthService";
 import { useSelector } from "react-redux";
 

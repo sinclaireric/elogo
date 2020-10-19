@@ -17,13 +17,13 @@ import filter from "lodash.filter";
 
 export default function PatientsListScreen() {
   const [DATA, setDATA] = React.useState<any[]>();
-  const [isLoading, setIsLoading] = React.useState(false);
+  const [isLoading, setIsLoading] = React.useState(true);
   const [error, setError] = React.useState(null);
   const [query, setQuery] = React.useState("");
   const [fullData, setFullData] = React.useState([]);
   const [selectedId, setSelectedId] = React.useState(null);
   const [modalVisible, setModalVisible] = React.useState(false);
-  const [Patient, setPatient] = React.useState<any[any]>();
+  const [selectedPatient, setSelectedPatient] = React.useState<any[any]>();
 
   useEffect(() => {
     async function getData() {
@@ -41,33 +41,9 @@ export default function PatientsListScreen() {
           setError(err);
         });
     }
-    displayLoadingOrError();
+
     getData();
   }, []);
-
-  function displayLoadingOrError() {
-    if (isLoading) {
-      return (
-        <View
-          style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
-        >
-          <ActivityIndicator size="large" color="#5500dc" />
-        </View>
-      );
-    }
-
-    if (error) {
-      return (
-        <View
-          style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
-        >
-          <Text style={{ fontSize: 18 }}>
-            Error fetching data... Check your network connection!
-          </Text>
-        </View>
-      );
-    }
-  }
 
   //Lis des données dans le storage gâce à la key passée.
   const readData = async (key: string) => {
@@ -117,33 +93,13 @@ export default function PatientsListScreen() {
       <Item
         item={item}
         onPress={() => {
-          console.log("renderItem -> item.id", item.id);
-          setSelectedId(item.id);
-
-          console.log("In Item after set", selectedId);
+          setSelectedPatient(item);
+          // setSelectedId(item.id);
           setModalVisible(true);
-          getPatientName();
         }}
         style={{ backgroundColor }}
       />
     );
-  };
-
-  const getPatientName = () => {
-    async function getPatient() {
-      //  console.log("in get", selectedId);
-      await axios
-        .get(`http://localhost:5000/api/Patients/${selectedId}`)
-        .then((res) => {
-          //console.log("getPatient -> res", res.data);//work
-          setPatient(res.data);
-        })
-        .catch((err) => {
-          setError(err);
-        });
-    }
-    setModalVisible(true);
-    getPatient();
   };
 
   function renderHeader() {
@@ -168,11 +124,36 @@ export default function PatientsListScreen() {
       </View>
     );
   }
+  if (isLoading) {
+    return (
+      <View
+        style={[
+          styles.container,
+          { flex: 1, justifyContent: "center", alignItems: "center" },
+        ]}
+      >
+        <ActivityIndicator size="large" color="#5500dc" />
+      </View>
+    );
+  }
 
+  if (error) {
+    console.log(error);
+    return (
+      <View
+        style={[
+          styles.container,
+          { flex: 1, justifyContent: "center", alignItems: "center" },
+        ]}
+      >
+        <Text style={{ fontSize: 18 }}>hello</Text>
+      </View>
+    );
+  }
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Liste des patients</Text>
-      {Patient !== undefined ? (
+      {selectedPatient !== undefined ? (
         <Modal
           animationType="slide"
           transparent={true}
@@ -185,7 +166,7 @@ export default function PatientsListScreen() {
             <View style={styles.modalView}>
               <Text style={styles.modalText}>
                 Commencer le test de
-                {Patient.fullname}{" "}
+                {selectedPatient.fullname}{" "}
               </Text>
               <View style={styles.modalButton}>
                 <TouchableHighlight
@@ -216,7 +197,7 @@ export default function PatientsListScreen() {
           </View>
         </Modal>
       ) : (
-        console.log("hello")
+        <></>
       )}
       <FlatList
         ListHeaderComponent={renderHeader}
