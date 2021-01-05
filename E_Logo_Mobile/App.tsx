@@ -30,7 +30,8 @@ export default function App() {
         saveStorage("CurrentUserID", JSON.stringify(res.data.id));
       })
       .catch((err) => {
-        setError(err.response.data);
+        if (err.response && err.response.data) setError(err.response.data);
+        else setError(err);
       });
   };
 

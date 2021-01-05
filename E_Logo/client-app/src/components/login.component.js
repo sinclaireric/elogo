@@ -54,12 +54,12 @@ class Login extends Component {
                 <h3>Log In</h3>
 
                 <div className="form-group">
-                    <label>Email address</label>
+                    <label>Adresse e-mail</label>
                     <input type="text" value={this.state.email} id="email" onChange={this.handleChange} className="form-control" placeholder="Enter email" />
                 </div>
 
                 <div className="form-group">
-                    <label>Password</label>
+                    <label>Mot de passe</label>
                     <input type="password" value={this.state.password} id="password" onChange={this.handleChange} className="form-control" placeholder="Enter password" />
                 </div>
 

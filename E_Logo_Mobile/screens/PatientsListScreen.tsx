@@ -187,6 +187,7 @@ export default function PatientsListScreen() {
                     backgroundColor: "#rgb(240, 91, 86)",
                   }}
                   onPress={() => {
+                    //  navigation.navigate('Profile', { name: 'Jane' })
                     setModalVisible(!modalVisible);
                   }}
                 >

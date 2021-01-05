@@ -146,7 +146,7 @@ export default function PatientsList() {
           toolbar: true,
           paging: true,
         }}
-        title="Patients List"
+        title="Patients"
         columns={columns}
         data={data}
         editable={{
@@ -181,7 +181,7 @@ export default function PatientsList() {
                                   paging: true,
                                 }}
                 //  icons={tableIcons}
-                  title={'Responses'}
+                  title={'Réponses'}
                   columns={columnsResponses}
                   data={rowData.responses}
                 />
