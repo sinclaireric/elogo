@@ -15,6 +15,7 @@ export default function App() {
   const colorScheme = useColorScheme();
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
   const [error, setError] = React.useState();
+  const [selectedPatient] = React.useState();
 
   const login = (email: string, password: string) => {
     axios({
@@ -35,6 +36,23 @@ export default function App() {
       });
   };
 
+  // const getselectedPatient = (task: number) => {
+  //   axios({
+  //     method: "GET",
+  //     url: "http://localhost:5000/api/Tasks",
+  //     data: { task },
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //   })
+  //     .then((res) => {
+  //       setselectedPatient(res.data);
+  //     })
+  //     .catch((err) => {
+  //       if (err.response && err.response.data) setError(err.response.data);
+  //       else setError(err);
+  //     });
+  // };
   //Save dans le storage item doit être string!!!
   const saveStorage = async (key: string, item: string) => {
     try {
@@ -56,6 +74,7 @@ export default function App() {
           login={login}
           colorScheme={colorScheme}
           error={error}
+          // selectedPatient={selectedPatient}
         />
         <StatusBar />
       </SafeAreaProvider>

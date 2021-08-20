@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "V9GSiPo9jOTeoQoywvOwhK1zhUzeMXpyeKVraNhLPIsi7Bya06y6sZRZimn2YrrtTstxGnafq5aEQAqn0bLauQ==",
+  "dgSpecHash": "y6tW1T9BUIK6VUx9o0/tmNQWV5OQgZ2lQ9QHyzkHXJxaShzgJDg1Z9umq19x0kG/TESX2+IlSHVxMEY47szbkA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Matilde\\Documents\\EPFC\\ING3A\\TFE\\Projects\\e_logo\\E_Logo\\E_Logo.csproj",
+  "projectFilePath": "C:\\Users\\Matilde\\Desktop\\Désorde\\e_logo\\E_Logo\\E_Logo.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Matilde\\.nuget\\packages\\castle.core\\4.4.0\\castle.core.4.4.0.nupkg.sha512",
     "C:\\Users\\Matilde\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\3.1.0\\microsoft.aspnetcore.authentication.jwtbearer.3.1.0.nupkg.sha512",

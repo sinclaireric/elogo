@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Matilde\\Documents\\EPFC\\ING3A\\TFE\\Projects\\e_logo\\E_Logo\\E_Logo.csproj": {}
+    "C:\\Users\\Matilde\\Desktop\\Désorde\\e_logo\\E_Logo\\E_Logo.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Matilde\\Documents\\EPFC\\ING3A\\TFE\\Projects\\e_logo\\E_Logo\\E_Logo.csproj": {
+    "C:\\Users\\Matilde\\Desktop\\Désorde\\e_logo\\E_Logo\\E_Logo.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Matilde\\Documents\\EPFC\\ING3A\\TFE\\Projects\\e_logo\\E_Logo\\E_Logo.csproj",
+        "projectUniqueName": "C:\\Users\\Matilde\\Desktop\\Désorde\\e_logo\\E_Logo\\E_Logo.csproj",
         "projectName": "E_Logo",
-        "projectPath": "C:\\Users\\Matilde\\Documents\\EPFC\\ING3A\\TFE\\Projects\\e_logo\\E_Logo\\E_Logo.csproj",
+        "projectPath": "C:\\Users\\Matilde\\Desktop\\Désorde\\e_logo\\E_Logo\\E_Logo.csproj",
         "packagesPath": "C:\\Users\\Matilde\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Matilde\\Documents\\EPFC\\ING3A\\TFE\\Projects\\e_logo\\E_Logo\\obj\\",
+        "outputPath": "C:\\Users\\Matilde\\Desktop\\Désorde\\e_logo\\E_Logo\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

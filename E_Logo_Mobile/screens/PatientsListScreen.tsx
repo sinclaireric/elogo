@@ -14,6 +14,7 @@ import {
 import axios from "axios";
 import AsyncStorage from "@react-native-community/async-storage";
 import filter from "lodash.filter";
+import { useNavigation } from "@react-navigation/native";
 
 export default function PatientsListScreen() {
   const [DATA, setDATA] = React.useState<any[]>();
@@ -21,9 +22,10 @@ export default function PatientsListScreen() {
   const [error, setError] = React.useState(null);
   const [query, setQuery] = React.useState("");
   const [fullData, setFullData] = React.useState([]);
-  const [selectedId, setSelectedId] = React.useState(null);
+  const [selectedId, setSelectedId] = React.useState("");
   const [modalVisible, setModalVisible] = React.useState(false);
   const [selectedPatient, setSelectedPatient] = React.useState<any[any]>();
+  const navigation = useNavigation();
 
   useEffect(() => {
     async function getData() {
@@ -64,6 +66,14 @@ export default function PatientsListScreen() {
     setQuery(text);
   };
 
+  const storeData = async (value: string) => {
+    try {
+      await AsyncStorage.setItem("SelectedPatientID", value);
+    } catch (e) {
+      alert("Failed to put the data in storage");
+    }
+  };
+
   const contains = (user: any, query: string) => {
     if (user.fullname.includes(query)) {
       return true;
@@ -94,7 +104,7 @@ export default function PatientsListScreen() {
         item={item}
         onPress={() => {
           setSelectedPatient(item);
-          // setSelectedId(item.id);
+          setSelectedId(item.id);
           setModalVisible(true);
         }}
         style={{ backgroundColor }}
@@ -187,8 +197,11 @@ export default function PatientsListScreen() {
                     backgroundColor: "#rgb(240, 91, 86)",
                   }}
                   onPress={() => {
-                    //  navigation.navigate('Profile', { name: 'Jane' })
+                    //navigation.navigate('Profile', { name: 'Jane' })
+
+                    storeData(JSON.stringify(selectedId));
                     setModalVisible(!modalVisible);
+                    navigation.navigate("Questions");
                   }}
                 >
                   <Text style={styles.textStyle}>Oui</Text>
