@@ -1,30 +1,26 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Matilde\\Desktop\\Désorde\\e_logo\\E_Logo\\E_Logo.csproj": {}
+    "C:\\Users\\Francis ABODO\\Documents\\GitHub\\elogo\\E_Logo\\E_Logo.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Matilde\\Desktop\\Désorde\\e_logo\\E_Logo\\E_Logo.csproj": {
+    "C:\\Users\\Francis ABODO\\Documents\\GitHub\\elogo\\E_Logo\\E_Logo.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Matilde\\Desktop\\Désorde\\e_logo\\E_Logo\\E_Logo.csproj",
+        "projectUniqueName": "C:\\Users\\Francis ABODO\\Documents\\GitHub\\elogo\\E_Logo\\E_Logo.csproj",
         "projectName": "E_Logo",
-        "projectPath": "C:\\Users\\Matilde\\Desktop\\Désorde\\e_logo\\E_Logo\\E_Logo.csproj",
-        "packagesPath": "C:\\Users\\Matilde\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Matilde\\Desktop\\Désorde\\e_logo\\E_Logo\\obj\\",
+        "projectPath": "C:\\Users\\Francis ABODO\\Documents\\GitHub\\elogo\\E_Logo\\E_Logo.csproj",
+        "packagesPath": "C:\\Users\\Francis ABODO\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Francis ABODO\\Documents\\GitHub\\elogo\\E_Logo\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Matilde\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\Francis ABODO\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program%Files\\dotnet\\shared\\Microsoft.AspNetCore.App": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -94,7 +90,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.200\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.412\\RuntimeIdentifierGraph.json"
         }
       }
     }

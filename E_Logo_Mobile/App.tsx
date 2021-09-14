@@ -6,7 +6,7 @@ import useCachedResources from "./hooks/useCachedResources";
 import useColorScheme from "./hooks/useColorScheme";
 import Navigation from "./navigation";
 import axios from "axios";
-import AsyncStorage from "@react-native-community/async-storage";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import "react-native-gesture-handler";
 import { NavigationContainer } from "@react-navigation/native";
 
@@ -17,7 +17,7 @@ export default function App() {
   const [error, setError] = React.useState();
   const [selectedPatient] = React.useState();
 
-  const login = (email: string, password: string) => {
+   const login = (email: string, password: string) => {
     axios({
       method: "POST",
       url: "http://localhost:5000/api/SpeechTherapists/authenticate",
@@ -34,7 +34,7 @@ export default function App() {
         if (err.response && err.response.data) setError(err.response.data);
         else setError(err);
       });
-  };
+  }; 
 
   // const getselectedPatient = (task: number) => {
   //   axios({
@@ -59,7 +59,7 @@ export default function App() {
       var dataSaved = await AsyncStorage.setItem(key, item);
       return dataSaved;
     } catch (error) {
-      console.log(error.message);
+      console.log(error);
     }
   };
 

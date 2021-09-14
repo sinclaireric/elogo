@@ -12,18 +12,36 @@ import {
   Alert,
 } from "react-native";
 import axios from "axios";
-import AsyncStorage from "@react-native-community/async-storage";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import filter from "lodash.filter";
 
+import { useNavigation } from "@react-navigation/native";
+
 export default function QuestionsScreen() {
-  const [DATA, setDATA] = React.useState<any[]>();
-  const [isLoading, setIsLoading] = React.useState(true);
+  const navigation = useNavigation();
+
+  const [DATA, setDATA] = React.useState([
+    { id: 1, name: "tache 1: appariemment de lettres" },
+    { id: 2, name: "tache 2: lecture de mots" },
+    { id: 3, name: "tache 3: denomination des objets" },
+  ]);
+  const [isLoading, setIsLoading] = React.useState(false);
   const [error, setError] = React.useState(null);
   const [selectedId, setSelectedId] = React.useState(null);
   const [modalVisible, setModalVisible] = React.useState(false);
   const [selectedPatient, setSelectedPatient] = React.useState<any[any]>();
 
-  useEffect(() => {
+  const navigateByTask = (id: number) => {
+    if (id === 1) {
+      return navigation.navigate("TacheOne");
+    } else if (id === 2) {
+      return navigation.navigate("TacheTwo");
+    } else {
+      return navigation.navigate("TacheThree");
+    }
+  };
+
+  /* useEffect(() => {
     async function getData() {
       //const selectedPatientID = await readData("SelectedPatientID");
       await axios
@@ -40,7 +58,7 @@ export default function QuestionsScreen() {
     }
 
     getData();
-  }, []);
+  }, []);  */
 
   //Lis des données dans le storage gâce à la key passée.
   const readData = async (key: string) => {
@@ -74,8 +92,9 @@ export default function QuestionsScreen() {
         item={item}
         onPress={() => {
           setSelectedPatient(item);
-          // setSelectedId(item.id);
+          setSelectedId(item.id);
           setModalVisible(true);
+          navigateByTask(item.id);
         }}
         style={{ backgroundColor }}
       />
@@ -122,7 +141,7 @@ export default function QuestionsScreen() {
   }
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Quetions !!!!!!</Text>
+      <Text style={styles.text}>Questions !!!!!!</Text>
       {selectedPatient !== undefined ? (
         <Modal
           animationType="slide"
@@ -150,6 +169,7 @@ export default function QuestionsScreen() {
                 >
                   <Text style={styles.textStyle}>Non</Text>
                 </TouchableHighlight>
+                <Text> </Text>
 
                 <TouchableHighlight
                   style={{
@@ -159,6 +179,7 @@ export default function QuestionsScreen() {
                   onPress={() => {
                     //  navigation.navigate('Profile', { name: 'Jane' })
                     setModalVisible(!modalVisible);
+                    //navigateByTask(DATA.id);
                   }}
                 >
                   <Text style={styles.textStyle}>Oui</Text>

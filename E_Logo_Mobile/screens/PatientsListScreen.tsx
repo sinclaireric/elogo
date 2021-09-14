@@ -12,13 +12,13 @@ import {
   Alert,
 } from "react-native";
 import axios from "axios";
-import AsyncStorage from "@react-native-community/async-storage";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import filter from "lodash.filter";
 import { useNavigation } from "@react-navigation/native";
 
 export default function PatientsListScreen() {
-  const [DATA, setDATA] = React.useState<any[]>();
-  const [isLoading, setIsLoading] = React.useState(true);
+  const [DATA, setDATA] = React.useState([{id:1, fullname: 'toto'}]);
+  const [isLoading, setIsLoading] = React.useState(false);
   const [error, setError] = React.useState(null);
   const [query, setQuery] = React.useState("");
   const [fullData, setFullData] = React.useState([]);
@@ -27,7 +27,7 @@ export default function PatientsListScreen() {
   const [selectedPatient, setSelectedPatient] = React.useState<any[any]>();
   const navigation = useNavigation();
 
-  useEffect(() => {
+  /* useEffect(() => {
     async function getData() {
       const userID = await readData("CurrentUserID");
       await axios
@@ -45,7 +45,7 @@ export default function PatientsListScreen() {
     }
 
     getData();
-  }, []);
+  }, []); */
 
   //Lis des données dans le storage gâce à la key passée.
   const readData = async (key: string) => {
@@ -175,7 +175,7 @@ export default function PatientsListScreen() {
           <View style={styles.centeredView}>
             <View style={styles.modalView}>
               <Text style={styles.modalText}>
-                Commencer le test de
+                Commencer le test de{" "}
                 {selectedPatient.fullname}{" "}
               </Text>
               <View style={styles.modalButton}>
@@ -189,7 +189,7 @@ export default function PatientsListScreen() {
                   }}
                 >
                   <Text style={styles.textStyle}>Non</Text>
-                </TouchableHighlight>
+                </TouchableHighlight><Text>{" "}{" "}{" "}{" "}</Text>
 
                 <TouchableHighlight
                   style={{

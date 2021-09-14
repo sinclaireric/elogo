@@ -13,6 +13,9 @@ import LinkingConfiguration from "./LinkingConfiguration";
 import Login from "../screens/LoginScreen";
 import PatientsList from "../screens/PatientsListScreen";
 import Questions from "../screens/QuestionsScreen";
+import TaskOneScreen from "../screens/TaskOneScreen";
+import TaskTwoScreen from "../screens/TaskTwoScreen";
+import TaskThreeScreen from "../screens/TaskThreeScreen";
 
 // If you are not familiar with React Navigation, we recommend going through the
 // "Fundamentals" guide: https://reactnavigation.org/docs/getting-started
@@ -63,19 +66,22 @@ function RootNavigator({
 }) {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
-      {isLoggedIn ? (
-        <Stack.Screen name="PatientsList" component={PatientsList} />
-      ) : (
+      {/* {isLoggedIn ? ( */}
+      <Stack.Screen name="PatientsList" component={PatientsList} />
+      {/* ) : (
         <Stack.Screen name="Login">
           {(props) => <Login {...props} error={error} login={login} />}
         </Stack.Screen>
-      )}
+      )} */}
       <Stack.Screen
         name="NotFound"
         component={NotFoundScreen}
         options={{ title: "Oops!" }}
       />
-      <Stack.Screen name="Questions" component={Questions}/>
+      <Stack.Screen name="Questions" component={Questions} />
+      <Stack.Screen name="TacheOne" component={TaskOneScreen} />
+      <Stack.Screen name="TacheTwo" component={TaskTwoScreen} />
+      <Stack.Screen name="TacheThree" component={TaskThreeScreen} />
 
       {/* {selectedPatient != undefined && isLoggedIn ? (
         <Stack.Screen name="Questions" component={Questions} />
