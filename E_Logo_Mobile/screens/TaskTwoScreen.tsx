@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
-import { StyleSheet, Text, View, Button } from "react-native";
+import { StyleSheet, Text, View, Button, TouchableOpacity } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 // 3rd party packages
 import { Audio } from "expo-av";
@@ -7,6 +8,8 @@ import { Audio } from "expo-av";
 let recording = new Audio.Recording();
 
 export default function TaskTwoScreen() {
+  const navigation = useNavigation();
+
   const [RecordedURI, SetRecordedURI] = useState("");
   const [AudioPerm, SetAudioPerm] = useState(false);
   const [isRecording, SetisRecording] = useState(false);
@@ -69,8 +72,8 @@ export default function TaskTwoScreen() {
     } catch (error) {
       console.log(error);
     }
+    console.warn(RecordedURI);
   };
-  //console.warn(RecordedURI);
 
   const stopSound = async () => {
     try {
@@ -87,9 +90,11 @@ export default function TaskTwoScreen() {
   return (
     <View style={styles.container}>
       <View style={{ position: "absolute", top: 150 }}>
-        <Text style={{ fontSize: 20, fontWeight: "bold" }}>Table</Text>
+        <Text style={{ fontSize: 20, fontWeight: "bold", color: "white" }}>
+          Table
+        </Text>
       </View>
-      <View style={{ position: "absolute", bottom: 0, marginBottom: 30 }}>
+      <View style={{ marginBottom: 30 }}>
         <Button
           title={isRecording ? "Stop Recording" : "Start Recording"}
           onPress={
@@ -107,7 +112,36 @@ export default function TaskTwoScreen() {
           title="Play Sound"
           onPress={isPLaying ? () => stopSound : () => playSound()}
         />
-        <Text>{RecordedURI}</Text>
+        {/* <Text>{RecordedURI}</Text> */}
+      </View>
+      <View
+        style={{
+          /* borderColor: "yellow",
+          borderWidth: 2,
+          borderStyle: "solid", */
+          backgroundColor: "blue",
+          width: 200,
+          position: "absolute",
+          bottom: 0,
+          marginBottom: 30,
+        }}
+      >
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate("TacheThree");
+          }}
+        >
+          <Text
+            style={{
+              fontSize: 20,
+              color: "white",
+              padding: 8,
+              textAlign: "center",
+            }}
+          >
+            Valider
+          </Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
