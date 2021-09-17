@@ -1,8 +1,18 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, Image, Button } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  Button,
+  TouchableOpacity,
+} from "react-native";
 import * as ImagePicker from "expo-image-picker";
+import { useNavigation } from "@react-navigation/native";
 
 export default function TaskThreeScreen() {
+  const navigation = useNavigation();
+
   // The path of the picked image
   const [pickedImagePath, setPickedImagePath] = useState("");
 
@@ -64,6 +74,35 @@ export default function TaskThreeScreen() {
         {pickedImagePath !== "" && (
           <Image source={{ uri: pickedImagePath }} style={styles.image} />
         )}
+      </View>
+      <View
+        style={{
+          /* borderColor: "yellow",
+          borderWidth: 2,
+          borderStyle: "solid", */
+          backgroundColor: "blue",
+          //width: 200,
+          position: "absolute",
+          bottom: 0,
+          marginBottom: 30,
+        }}
+      >
+        <TouchableOpacity
+          onPress={() => {
+            //navigation.navigate("TacheThree");
+          }}
+        >
+          <Text
+            style={{
+              fontSize: 20,
+              color: "white",
+              padding: 8,
+              textAlign: "center",
+            }}
+          >
+            Valider le test
+          </Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
